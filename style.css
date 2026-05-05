@@ -1,0 +1,713 @@
+:root {
+    --primary-font: 'Playfair Display', serif;
+    --body-font: 'Jost', sans-serif;
+    
+    --color-text: #1d1d1f; /* Apple's dark text */
+    --color-text-light: #86868b; /* Apple's secondary text */
+    --color-bg: #f5f5f7; /* Apple's off-white background */
+    --color-accent: #f7b731;
+    --color-border: rgba(0, 0, 0, 0.05);
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    
+    --container-width: 1200px;
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body-font);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Texture Overlay */
+.texture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('download (1).jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* Lighter for a cleaner Apple feel */
+    mix-blend-mode: multiply;
+    z-index: -1;
+    pointer-events: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--primary-font);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Section Common */
+section {
+    padding: 12rem 0; /* Increased vertical spacing */
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassmorphism Utilities (Apple Heavy Style) */
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.glass-btn {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.9);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Apple-style Reveal Utility Classes */
+.word-wrap {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    margin-right: 0.25em; /* Slightly more space for elegance */
+    padding-bottom: 0.1em; /* Prevent clipping of descenders */
+}
+
+.word-inner {
+    display: inline-block;
+    /* Removed CSS transition to let GSAP handle it fully without conflict */
+}
+
+/* Base opacity for scroll-linked words */
+.scroll-highlight-section .word-inner {
+    opacity: 0.15;
+}
+
+/* --- Section 1: Hero --- */
+.hero {
+    height: 100vh;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 2rem;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+}
+
+.hero-glass-panel, .hero-content {
+    grid-area: 1 / 1;
+}
+
+.hero-glass-panel {
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Lowest in hero stack */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+}
+
+.hero-content {
+    text-align: center;
+    width: 100%;
+    padding: 6rem 4rem;
+    position: relative;
+    z-index: 3; /* Highest: Above the image */
+}
+
+.hero-title {
+    font-size: clamp(4rem, 10vw, 8.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+    color: var(--color-text);
+}
+
+.hero-subtitle {
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-family: var(--primary-font);
+    font-style: italic;
+    color: var(--color-text-light);
+    margin-bottom: 2.5rem;
+}
+
+.hero-tags {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+}
+
+.hero-visuals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Middle: In front of glass, behind text */
+    pointer-events: none;
+}
+
+.hero-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 85vh; /* Keep it within viewport height */
+    max-height: 1000px;
+    width: auto;
+    max-width: 90vw;
+    object-fit: contain;
+    object-position: bottom right;
+    opacity: 0.9;
+    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.2));
+    z-index: 2; /* In front of taxi */
+}
+
+.hero-taxi {
+    position: absolute;
+    bottom: 2%; /* Pushed down as requested */
+    left: 8%;
+    height: 25vh; 
+    max-height: 250px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.85; 
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+    z-index: 1; /* Behind Iftekhar */
+}
+
+/* --- Section 2: Stats --- */
+.stats {
+    padding: 2rem 0 6rem;
+}
+
+.stats-glass {
+    padding: 5rem 2rem;
+}
+
+.stats-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Reduced gap since 4 items */
+    text-align: center;
+}
+
+.stat-item {
+    flex: 1;
+    max-width: 250px;
+}
+
+.stat-number {
+    font-size: 4rem;
+    color: var(--color-text); /* Apple prefers dark text for numbers often */
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items:baseline;
+    letter-spacing: -0.05em;
+}
+
+.stat-unit {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: 2px;
+    color: var(--color-accent);
+}
+
+.stat-text {
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* --- Section 3: Who I Am --- */
+.who-i-am {
+    padding: 8rem 0;
+    position: relative;
+}
+
+.who-i-am-visuals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Moved to front so it doesn't hide behind the glass */
+    pointer-events: none;
+    overflow: visible; /* Removed hidden so parallax doesn't clip */
+}
+
+.bg-rickshaw {
+    position: absolute;
+    bottom: 15%; /* Shifted up so wheels don't get cut */
+    right: 5%; /* Moved back to the right side */
+    height: 35vh; 
+    max-height: 350px;
+    width: auto;
+    opacity: 0.85; 
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+}
+
+.who-i-am-glass {
+    padding: 6rem 4rem;
+}
+
+.who-i-am-content {
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: 1.35rem;
+    line-height: 1.8;
+}
+
+.who-i-am-content p {
+    margin-bottom: 2rem;
+    color: var(--color-text-light);
+}
+
+.lead-text {
+    font-size: 2.5rem;
+    font-family: var(--primary-font);
+    line-height: 1.4;
+    color: var(--color-text) !important;
+    margin-bottom: 4rem !important;
+}
+
+.highlight-text {
+    font-family: var(--primary-font);
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 4rem;
+    color: var(--color-text) !important;
+}
+
+/* --- Section 4: What I Do (Carousel) --- */
+.section-heading {
+    font-size: 4rem;
+    margin-bottom: 4rem;
+    letter-spacing: -0.02em;
+}
+
+.carousel-container {
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.carousel-container::before,
+.carousel-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(245, 245, 247, 0.9), transparent);
+}
+.carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(245, 245, 247, 0.9), transparent);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+    padding: 0 3rem;
+}
+
+/* Increased speed: from 40s to 20s */
+.fast-track {
+    animation: scrollCarousel 20s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 1.5rem)); } 
+}
+
+.carousel-card {
+    width: 480px;
+    padding: 4rem;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.carousel-card h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.carousel-card p {
+    color: var(--color-text-light);
+    margin-bottom: 3rem;
+    flex-grow: 1;
+    font-size: 1.15rem;
+}
+
+/* --- Section 5: As Seen In & News --- */
+.as-seen-in {
+    padding: 8rem 0;
+}
+
+.news-carousel-container {
+    margin-bottom: 4rem;
+}
+
+/* Increased speed for news carousel too */
+.news-track {
+    animation: scrollCarousel 25s linear infinite;
+}
+
+.news-card {
+    width: 600px;
+    padding: 3.5rem;
+}
+
+.news-title {
+    font-size: 2rem;
+    font-family: var(--primary-font);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.news-excerpt {
+    color: var(--color-text-light);
+    margin-bottom: 2.5rem;
+    font-size: 1.1rem;
+    flex-grow: 1;
+}
+
+.news-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1.5rem;
+}
+
+.news-source {
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 2rem 0;
+}
+
+.marquee-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 6rem;
+    animation: marquee 20s linear infinite;
+}
+
+.logo-svg {
+    height: 45px;
+    width: auto;
+    opacity: 0.4;
+    transition: opacity 0.4s ease;
+}
+
+.logo-svg:hover {
+    opacity: 1;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 3rem)); }
+}
+
+/* --- Section 6: Work With Me --- */
+.work-with-me {
+    padding: 8rem 0 6rem;
+}
+
+.work-text {
+    font-size: 1.4rem;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 1.2rem 3rem;
+    font-family: var(--body-font);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    border-radius: 30px; /* Fully rounded pill buttons Apple style */
+    cursor: pointer;
+    display: inline-block;
+    transition: color 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    transition: left 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 0;
+}
+
+.btn-primary {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border: 1px solid var(--color-text);
+}
+
+.btn-primary::before {
+    background-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+    color: var(--color-text);
+    border-color: var(--color-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(247, 183, 49, 0.3);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+}
+
+.btn-outline::before {
+    background-color: var(--color-text);
+}
+
+.btn-outline:hover {
+    color: var(--color-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card-link {
+    font-family: var(--primary-font);
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.2rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(255,255,255,0.5);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1.5rem;
+    text-align: center;
+}
+
+.card-link:hover {
+    color: var(--color-text);
+    border-color: transparent;
+    background: var(--color-accent);
+    box-shadow: 0 10px 20px rgba(247, 183, 49, 0.2);
+}
+
+/* --- Section 7: Footer --- */
+.footer {
+    padding: 4rem 0;
+    text-align: center;
+    border-top: 1px solid var(--color-border);
+    position: relative;
+    z-index: 10;
+}
+
+.footer-links {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--color-text-light);
+}
+
+.footer-links .dot {
+    margin: 0 0.8rem;
+    color: var(--color-accent);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: rgba(43, 43, 43, 0.5);
+}
+
+/* --- Scroll to Top Button --- */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+    background: var(--color-text);
+    color: var(--color-bg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .stats-grid {
+        flex-wrap: wrap;
+    }
+    .stat-item {
+        flex: 1 1 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-glass-panel {
+        padding: 2rem;
+    }
+    .hero-title {
+        font-size: 4.5rem;
+    }
+    .hero-taxi, .hero-image {
+        height: 60vh;
+        width: auto;
+        bottom: 0;
+        right: 0;
+    }
+    .carousel-card {
+        width: 320px;
+        padding: 2.5rem;
+    }
+    .news-card {
+        width: 350px;
+        padding: 2.5rem;
+    }
+    .stat-number {
+        font-size: 3.5rem;
+    }
+    .stat-item {
+        flex: 1 1 100%;
+    }
+    .who-i-am-glass {
+        padding: 3rem 2rem;
+    }
+    .stats-glass {
+        padding: 3rem 1.5rem;
+    }
+}
