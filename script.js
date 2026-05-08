@@ -45,58 +45,88 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // --- Navbar ScrollSpy Logic ---
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll(".nav-item");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            // Activate when the section is at least 1/3rd into the viewport
+            if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                const id = section.getAttribute("id");
+                if (id) {
+                    current = id;
+                }
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove("active");
+            if (item.getAttribute("href") === `#${current}`) {
+                item.classList.add("active");
+            }
+        });
+    });
+
     // --- Hero Section Animations ---
     const heroTl = gsap.timeline();
 
     // Text reveal for Hero Title
-    heroTl.from(".hero-title .word-inner", {
+    heroTl.from(".hero-tags-top", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        delay: 0.2
+    })
+    .from(".hero-name-aka", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    }, "-=0.4")
+    .from(".hero-title .word-inner", {
         yPercent: 120,
         opacity: 0,
         duration: 1.2,
         ease: "power4.out",
-        stagger: 0.1,
-        delay: 0.2
-    })
-        // Subtitle reveal
-        .from(".hero-subtitle .word-inner", {
-            yPercent: 120,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-            stagger: 0.05
-        }, "-=0.8")
-        // Fade up tags
-        .from(".hero-tags", {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out"
-        }, "-=0.6")
-        // Fade in Hero Image
-        .from(".hero-image", {
-            x: 100,
-            opacity: 0,
-            duration: 1.5,
-            ease: "power2.out"
-        }, "-=1")
-        // Taxi drives in from left
-        .from(".hero-taxi", {
-            xPercent: -150, // Starts off-screen left
-            opacity: 0,
-            duration: 1.8,
-            ease: "power3.out"
-        }, "-=1.2")
-        // Fade in Glass Panel
-        .from(".hero-glass-panel", {
-            opacity: 0,
-            scale: 0.95,
-            duration: 1,
-            ease: "power2.out"
-        }, "-=2");
+        stagger: 0.1
+    }, "-=0.4")
+    .from(".hero-quote .word-inner", {
+        yPercent: 120,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.05
+    }, "-=0.8")
+    .from(".hero-cta-container .btn", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    }, "-=0.6")
+    /* 
+    .from(".hero-image", {
+        x: 50,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power2.out"
+    }, "-=1.2")
+    */
+    .from(".hero-social-box", {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    }, "-=1");
 
     // Parallax effect on Hero Image
+    /* Disabled parallax on hero image to ensure it stays pinned to bottom 
     gsap.to(".parallax-img", {
-        yPercent: 20,
+        yPercent: 10,
         ease: "none",
         scrollTrigger: {
             trigger: ".hero",
@@ -104,7 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
             end: "bottom top",
             scrub: true
         }
-    });
+    }); 
+    */
 
     gsap.to(".parallax-img-slow", {
         yPercent: 10,
@@ -141,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 gsap.to(counter, {
                     innerHTML: target,
-                    duration: 2.5,
+                    duration: 4.5,
                     ease: "power3.out",
                     snap: { innerHTML: 0.01 },
                     onUpdate: function () {
@@ -179,21 +210,33 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power2.out"
     });
 
-    // --- Who I Am Section ---
-    gsap.from(".who-i-am-glass", {
+    // --- Who I Am / Timeline Scroll Interaction ---
+    const timelineItems = gsap.utils.toArray('.timeline-item');
+    
+    // Animate the fill line
+    gsap.to('.timeline-line-fill', {
+        height: "100%",
+        ease: "none",
         scrollTrigger: {
-            trigger: ".who-i-am",
-            start: "top 80%",
-        },
-        opacity: 0,
-        scale: 0.95,
-        duration: 1,
-        ease: "power2.out"
+            trigger: ".timeline-wrapper",
+            start: "top center",
+            end: "bottom center",
+            scrub: true
+        }
     });
 
-    gsap.from(".fade-up-stagger > p", {
+    // Highlight timeline items as they are reached
+    timelineItems.forEach((item, i) => {
+        ScrollTrigger.create({
+            trigger: item,
+            start: "top center+=50", // Trigger slightly before it hits center
+            toggleClass: "active"
+        });
+    });
+
+    gsap.from(".who-paragraphs > p", {
         scrollTrigger: {
-            trigger: ".who-i-am .fade-up-stagger",
+            trigger: ".who-paragraphs",
             start: "top 75%",
         },
         y: 30,
@@ -201,6 +244,38 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 1,
         stagger: 0.15,
         ease: "power3.out"
+    });
+
+    // --- Horizontal Scroll (What I Do) ---
+    let mm = gsap.matchMedia();
+
+    mm.add("(min-width: 992px)", () => {
+        let horizontalSection = document.querySelector('.horizontal-scroll-section');
+        let horizontalTrack = document.querySelector('.horizontal-track');
+        let horizontalCards = gsap.utils.toArray('.horizontal-card');
+
+        if(horizontalSection && horizontalTrack && horizontalCards.length) {
+            let getScrollAmount = () => -(horizontalTrack.scrollWidth - window.innerWidth);
+
+            gsap.to(horizontalTrack, {
+                x: getScrollAmount,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: horizontalSection,
+                    pin: true,
+                    start: "top top",
+                    end: () => `+=${horizontalTrack.scrollWidth - window.innerWidth}`,
+                    scrub: 1,
+                    invalidateOnRefresh: true,
+                    snap: {
+                        snapTo: 1 / (horizontalCards.length - 1),
+                        duration: {min: 0.2, max: 0.6},
+                        delay: 0.1,
+                        ease: "power1.inOut"
+                    }
+                }
+            });
+        }
     });
 
     // --- Generic Fade Ups ---
