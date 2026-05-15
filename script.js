@@ -54,12 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            // Activate when the section is at least 1/3rd into the viewport
-            if (scrollY >= (sectionTop - sectionHeight / 3)) {
-                const id = section.getAttribute("id");
-                if (id) {
-                    current = id;
-                }
+            if (window.pageYOffset >= (sectionTop - 150)) {
+                current = section.getAttribute("id");
             }
         });
 
@@ -67,6 +63,31 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.remove("active");
             if (item.getAttribute("href") === `#${current}`) {
                 item.classList.add("active");
+            }
+        });
+    });
+
+    // --- Navbar Smooth Scroll Override ---
+    const allNavLinks = document.querySelectorAll('.nav-item, .nav-cta, .nav-logo');
+    allNavLinks.forEach(link => {
+        link.addEventListener("click", function(e) {
+            const href = this.getAttribute("href");
+            if (href && href.startsWith("#")) {
+                e.preventDefault();
+                const targetId = href;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const offset = 80; // Navbar height
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = targetElement.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             }
         });
     });
