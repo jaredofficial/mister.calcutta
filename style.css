@@ -1093,14 +1093,21 @@ section {
 
     .horizontal-card {
         width: 100%;
+        max-height: none;
         flex-direction: column;
-        gap: 3rem;
-        padding: 3rem 2rem;
+        gap: 2rem;
+        padding: 2.5rem 2rem;
     }
 
     .cinematic-media {
         width: 100%;
         max-width: none;
+        aspect-ratio: 16/9;
+        max-height: 220px;
+    }
+
+    .cinematic-text {
+        padding: 0;
     }
 }
 
@@ -1831,14 +1838,17 @@ section {
 
 @media (max-width: 768px) {
 
-    .nav-links,
-    .nav-cta {
+    .nav-links {
         display: none;
     }
 
+    .nav-cta {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.75rem;
+    }
+
     .nav-container {
-        justify-content: center;
-        padding: 1rem;
+        padding: 0.8rem 1.2rem;
     }
 
     .navbar {
@@ -2257,5 +2267,56 @@ section {
     .lightbox-next svg {
         width: 20px;
         height: 20px;
+    }
+
+    /* Mobile brand logo size adjustments */
+    .brand-logo {
+        max-height: 110px;
+    }
+
+    /* Blog Card Overrides for correct vertical layout */
+    .blog-card {
+        width: 100%;
+        max-width: 420px;
+        flex-direction: column;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .blog-image {
+        width: 100%;
+        flex: none;
+        height: 200px;
+    }
+
+    .blog-content {
+        padding: 1.5rem;
+    }
+
+    .blog-card .blog-title {
+        font-size: 1.3rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .blog-card .blog-excerpt {
+        font-size: 0.95rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Reels Carousel link size adjustments for smaller portrait viewports */
+    .reel-link {
+        width: 170px;
+        height: 300px;
+    }
+
+    /* Gallery scroll link size adjustments for compact film-strip visual style */
+    .gallery-image {
+        width: 200px;
+        height: 125px;
+    }
+
+    /* Scale background stickers down so they don't block text readability */
+    .sticker {
+        max-width: 90px !important;
     }
 }
