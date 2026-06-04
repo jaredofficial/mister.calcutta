@@ -451,4 +451,57 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // --- Blogs Carousel Navigation ---
+    const blogsContainer = document.querySelector('.blogs-carousel-container');
+    const blogsPrevBtn = document.querySelector('.blogs-nav-btn.prev-btn');
+    const blogsNextBtn = document.querySelector('.blogs-nav-btn.next-btn');
+
+    if (blogsContainer && blogsPrevBtn && blogsNextBtn) {
+        const getScrollAmount = () => {
+            const firstCard = blogsContainer.querySelector('.blog-card');
+            if (firstCard) {
+                const style = window.getComputedStyle(blogsContainer.querySelector('.blogs-track'));
+                const gap = parseFloat(style.gap) || 32;
+                return firstCard.offsetWidth + gap;
+            }
+            return 400; // Fallback
+        };
+
+        blogsPrevBtn.addEventListener('click', () => {
+            blogsContainer.scrollBy({
+                left: -getScrollAmount(),
+                behavior: 'smooth'
+            });
+        });
+
+        blogsNextBtn.addEventListener('click', () => {
+            blogsContainer.scrollBy({
+                left: getScrollAmount(),
+                behavior: 'smooth'
+            });
+        });
+
+        const toggleButtons = () => {
+            const scrollLeft = blogsContainer.scrollLeft;
+            const maxScroll = blogsContainer.scrollWidth - blogsContainer.clientWidth;
+            
+            if (scrollLeft <= 5) {
+                blogsPrevBtn.classList.add('disabled');
+            } else {
+                blogsPrevBtn.classList.remove('disabled');
+            }
+            
+            if (scrollLeft >= maxScroll - 5) {
+                blogsNextBtn.classList.add('disabled');
+            } else {
+                blogsNextBtn.classList.remove('disabled');
+            }
+        };
+
+        blogsContainer.addEventListener('scroll', toggleButtons);
+        window.addEventListener('resize', toggleButtons);
+        // Run once on load
+        setTimeout(toggleButtons, 150);
+    }
+
 });
