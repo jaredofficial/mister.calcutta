@@ -103,7 +103,46 @@ function updateGalleryJson() {
             return ['.webp', '.jpg', '.jpeg', '.png'].includes(ext);
         });
         fs.writeFile(path.join(__dirname, 'gallery.json'), JSON.stringify(images, null, 2), 'utf8', (err) => {
-            if (err) console.error('Failed to update gallery.json:', err);
+            if (err) {
+                console.error('Failed to update gallery.json:', err);
+            } else {
+                updateIndexHtmlGallery(images);
+            }
+        });
+    });
+}
+
+// Helper function to sync index.html statically with the gallery list
+function updateIndexHtmlGallery(images) {
+    const indexHtmlPath = path.join(__dirname, 'index.html');
+    fs.readFile(indexHtmlPath, 'utf8', (err, html) => {
+        if (err) {
+            console.error('Failed to read index.html:', err);
+            return;
+        }
+        
+        const half = Math.ceil(images.length / 2);
+        const list1 = images.slice(0, half);
+        const list2 = images.slice(half);
+
+        const makeImgTags = (list) => {
+            const tags = list.map(filename => `<img src="gallery images/${filename}" class="gallery-image" alt="Calcutta Frames" loading="lazy">`);
+            return [...tags, ...tags].join('\n                        ');
+        };
+
+        const html1 = makeImgTags(list1);
+        const html2 = makeImgTags(list2);
+
+        // Replace track-l2r content
+        const l2rRegex = /(<div class="gallery-track track-l2r">)([\s\S]*?)(<\/div>)/;
+        let updatedHtml = html.replace(l2rRegex, `$1\n                        ${html1}\n                    $3`);
+
+        // Replace track-r2l content
+        const r2lRegex = /(<div class="gallery-track track-r2l">)([\s\S]*?)(<\/div>)/;
+        updatedHtml = updatedHtml.replace(r2lRegex, `$1\n                        ${html2}\n                    $3`);
+
+        fs.writeFile(indexHtmlPath, updatedHtml, 'utf8', (err) => {
+            if (err) console.error('Failed to write index.html:', err);
         });
     });
 }

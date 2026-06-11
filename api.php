@@ -129,6 +129,40 @@ function update_gallery_json() {
     }
     sort($images);
     file_put_contents('gallery.json', json_encode($images, JSON_PRETTY_PRINT));
+    update_index_html_gallery($images);
+}
+
+// Helper to sync index.html statically with the gallery list
+function update_index_html_gallery($images) {
+    $indexHtmlPath = 'index.html';
+    if (!file_exists($indexHtmlPath)) return;
+    $html = file_get_contents($indexHtmlPath);
+    if ($html === false) return;
+    
+    $half = ceil(count($images) / 2);
+    $list1 = array_slice($images, 0, $half);
+    $list2 = array_slice($images, $half);
+
+    $makeImgTags = function($list) {
+        $tags = [];
+        foreach ($list as $filename) {
+            $tags[] = '<img src="gallery images/' . $filename . '" class="gallery-image" alt="Calcutta Frames" loading="lazy">';
+        }
+        return implode("\n                        ", array_merge($tags, $tags));
+    };
+
+    $html1 = $makeImgTags($list1);
+    $html2 = $makeImgTags($list2);
+
+    // Replace track-l2r content
+    $l2rRegex = '/(<div class="gallery-track track-l2r">)([\s\S]*?)(<\/div>)/';
+    $updatedHtml = preg_replace($l2rRegex, '$1' . "\n                        " . $html1 . "\n                    " . '$3', $html);
+
+    // Replace track-r2l content
+    $r2lRegex = '/(<div class="gallery-track track-r2l">)([\s\S]*?)(<\/div>)/';
+    $updatedHtml = preg_replace($r2lRegex, '$1' . "\n                        " . $html2 . "\n                    " . '$3', $updatedHtml);
+
+    file_put_contents($indexHtmlPath, $updatedHtml);
 }
 
     case 'upload':

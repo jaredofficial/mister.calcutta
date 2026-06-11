@@ -24,15 +24,10 @@ function splitWords() {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    // --- Dynamic CMS and Gallery Fetch ---
+    // --- Dynamic CMS Copy Fetch ---
     try {
-        const [contentRes, galleryRes] = await Promise.all([
-            fetch('content.json'),
-            fetch('gallery.json')
-        ]);
-        
+        const contentRes = await fetch('content.json');
         const content = await contentRes.json();
-        const galleryImages = await galleryRes.json();
         
         // Populate static text and stats
         const cmsElements = document.querySelectorAll('[data-cms-key]');
@@ -48,36 +43,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             }
         });
-        
-        // Populate gallery tracks
-        const trackL2R = document.querySelector(".gallery-track.track-l2r");
-        const trackR2L = document.querySelector(".gallery-track.track-r2l");
-
-        if (trackL2R && trackR2L && galleryImages && galleryImages.length) {
-            trackL2R.innerHTML = '';
-            trackR2L.innerHTML = '';
-
-            const half = Math.ceil(galleryImages.length / 2);
-            const list1 = galleryImages.slice(0, half);
-            const list2 = galleryImages.slice(half);
-
-            const createImageElement = (filename) => {
-                const img = document.createElement("img");
-                img.src = `gallery images/${encodeURIComponent(filename)}`;
-                img.className = "gallery-image";
-                img.alt = "Calcutta Frames";
-                img.loading = "lazy";
-                return img;
-            };
-
-            // Render L2R (first half + duplication for infinite scroll)
-            list1.forEach(file => trackL2R.appendChild(createImageElement(file)));
-            list1.forEach(file => trackL2R.appendChild(createImageElement(file)));
-
-            // Render R2L (second half + duplication for infinite scroll)
-            list2.forEach(file => trackR2L.appendChild(createImageElement(file)));
-            list2.forEach(file => trackR2L.appendChild(createImageElement(file)));
-        }
     } catch (err) {
         console.error("Failed to load CMS content:", err);
     }
