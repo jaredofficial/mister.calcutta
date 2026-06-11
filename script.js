@@ -22,7 +22,65 @@ function splitWords() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+    // --- Dynamic CMS and Gallery Fetch ---
+    try {
+        const [contentRes, galleryRes] = await Promise.all([
+            fetch('/api/content'),
+            fetch('/api/gallery')
+        ]);
+        
+        const content = await contentRes.json();
+        const galleryImages = await galleryRes.json();
+        
+        // Populate static text and stats
+        const cmsElements = document.querySelectorAll('[data-cms-key]');
+        cmsElements.forEach(el => {
+            const key = el.getAttribute('data-cms-key');
+            const value = key.split('.').reduce((acc, part) => acc && acc[part], content);
+            if (value !== undefined) {
+                if (key.startsWith('stats.')) {
+                    el.setAttribute('data-target', value);
+                    el.innerText = '0';
+                } else {
+                    el.innerHTML = value;
+                }
+            }
+        });
+        
+        // Populate gallery tracks
+        const trackL2R = document.querySelector(".gallery-track.track-l2r");
+        const trackR2L = document.querySelector(".gallery-track.track-r2l");
+
+        if (trackL2R && trackR2L && galleryImages && galleryImages.length) {
+            trackL2R.innerHTML = '';
+            trackR2L.innerHTML = '';
+
+            const half = Math.ceil(galleryImages.length / 2);
+            const list1 = galleryImages.slice(0, half);
+            const list2 = galleryImages.slice(half);
+
+            const createImageElement = (filename) => {
+                const img = document.createElement("img");
+                img.src = `gallery images/${encodeURIComponent(filename)}`;
+                img.className = "gallery-image";
+                img.alt = "Calcutta Frames";
+                img.loading = "lazy";
+                return img;
+            };
+
+            // Render L2R (first half + duplication for infinite scroll)
+            list1.forEach(file => trackL2R.appendChild(createImageElement(file)));
+            list1.forEach(file => trackL2R.appendChild(createImageElement(file)));
+
+            // Render R2L (second half + duplication for infinite scroll)
+            list2.forEach(file => trackR2L.appendChild(createImageElement(file)));
+            list2.forEach(file => trackR2L.appendChild(createImageElement(file)));
+        }
+    } catch (err) {
+        console.error("Failed to load CMS content:", err);
+    }
 
     // 1. Prepare DOM for animations
     splitWords();
@@ -387,10 +445,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const updateLightboxContent = (index) => {
             const src = uniqueImages[index];
-            // Load high-res image
-            lightboxImg.setAttribute("src", src.replace("&w=600", "&w=1200"));
-            lightboxTitle.innerText = "Sample";
-            lightboxDesc.innerText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+            lightboxImg.setAttribute("src", src);
+            const caption = document.querySelector(".lightbox-caption");
+            if (caption) {
+                caption.style.display = "none";
+            }
         };
 
         galleryImages.forEach(img => {

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS Dashboard | Mister Calcutta</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #fffdf4;
+            --color-text: #342f2e;
+            --color-accent: #b7582c; /* Terracotta */
+            --color-accent-hover: #9e4620;
+            --color-border: rgba(52, 47, 46, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(52, 47, 46, 0.08);
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --font-body: 'Jost', sans-serif;
+            --font-display: 'Playfair Display', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient background shapes matching the main site */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(183, 88, 44, 0.08) 0%, rgba(183, 88, 44, 0) 70%);
+            top: -100px;
+            left: -100px;
+            z-index: -1;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(183, 88, 44, 0.05) 0%, rgba(183, 88, 44, 0) 70%);
+            bottom: -150px;
+            right: -150px;
+            z-index: -1;
+        }
+
+        /* Glassmorphic Container */
+        .cms-container {
+            width: 100%;
+            max-width: 1200px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px rgba(52, 47, 46, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 3rem;
+            display: none; /* Shown after auth success */
+        }
+
+        /* Auth Portal Card */
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px rgba(52, 47, 46, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+
+        .auth-logo {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-style: italic;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-subtitle {
+            font-size: 1rem;
+            color: #7c7775;
+            margin-bottom: 2rem;
+        }
+
+        /* CMS Header */
+        .cms-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cms-title-area h1 {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+
+        .cms-title-area h1 span {
+            color: var(--color-accent);
+            font-style: italic;
+        }
+
+        .cms-title-area p {
+            font-size: 0.95rem;
+            color: #7c7775;
+            margin-top: 0.2rem;
+        }
+
+        /* General Forms & Controls */
+        label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-accent);
+            margin-bottom: 0.6rem;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            background: rgba(255, 255, 255, 0.6);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--color-accent);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(183, 88, 44, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--color-text);
+            color: var(--color-bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(183, 88, 44, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--color-text);
+            color: var(--color-text);
+        }
+
+        .btn-outline:hover {
+            background: rgba(52, 47, 46, 0.05);
+        }
+
+        .btn-danger {
+            background: #d93838;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+        }
+
+        .btn-danger:hover {
+            background: #b52b2b;
+        }
+
+        /* Tabs Interface */
+        .tabs-nav {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #7c7775;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            color: var(--color-text);
+        }
+
+        .tab-btn.active {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-accent);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Grid Layout */
+        .stats-edit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* Gallery Manager Styles */
+        .upload-zone {
+            border: 2px dashed rgba(183, 88, 44, 0.3);
+            background: rgba(183, 88, 44, 0.02);
+            border-radius: var(--radius-md);
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2.5rem;
+        }
+
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--color-accent);
+            background: rgba(183, 88, 44, 0.06);
+        }
+
+        .upload-zone svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .upload-zone p {
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .upload-zone span {
+            font-size: 0.85rem;
+            color: #7c7775;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-height: 500px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 3/2;
+            box-shadow: 0 5px 15px rgba(52, 47, 46, 0.03);
+            border: 1px solid var(--color-border);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(29, 29, 31, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-card:hover .gallery-card-overlay {
+            opacity: 1;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #1d1d1f;
+            color: white;
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            z-index: 3000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+
+        .toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast-success { border-left: 4px solid #4caf50; }
+        .toast-error { border-left: 4px solid #f44336; }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .cms-container { padding: 1.5rem; }
+            .stats-edit-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .tabs-nav { overflow-x: auto; white-space: nowrap; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Auth Card -->
+    <div id="authPanel" class="auth-card">
+        <h2 class="auth-logo">Mister Calcutta</h2>
+        <p class="auth-subtitle">Enter password to manage content</p>
+        <form id="authForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <input type="password" id="passwordInput" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Unlock Dashboard</button>
+        </form>
+    </div>
+
+    <!-- CMS Dashboard -->
+    <div id="cmsPanel" class="cms-container">
+        <header class="cms-header">
+            <div class="cms-title-area">
+                <h1>Mister Calcutta <span>CMS</span></h1>
+                <p>Edit website statistics, copy sections, and manage gallery frames</p>
+            </div>
+            <button class="btn btn-outline" onclick="handleLogout()">Log Out</button>
+        </header>
+
+        <nav class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab(event, 'copy-tab')">Text Content</button>
+            <button class="tab-btn" onclick="switchTab(event, 'stats-tab')">Statistics</button>
+            <button class="tab-btn" onclick="switchTab(event, 'gallery-tab')">Gallery Images</button>
+        </nav>
+
+        <!-- Form for Stats and Text (shared submission) -->
+        <form id="cmsForm" onsubmit="saveContent(event)">
+            
+            <!-- Tab 1: Text Copy -->
+            <div id="copy-tab" class="tab-content active">
+                <div class="form-group">
+                    <label for="who_am_i_quote">Who am I - Main Quote</label>
+                    <textarea id="who_am_i_quote" data-key="who_am_i.quote" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="who_am_i_para1">Who am I - Paragraph 1</label>
+                    <textarea id="who_am_i_para1" data-key="who_am_i.paragraph_1" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="who_am_i_para2">Who am I - Paragraph 2</label>
+                    <textarea id="who_am_i_para2" data-key="who_am_i.paragraph_2" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="who_am_i_para3">Who am I - Paragraph 3</label>
+                    <textarea id="who_am_i_para3" data-key="who_am_i.paragraph_3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="who_am_i_quote_sec">Who am I - Secondary Quote</label>
+                    <textarea id="who_am_i_quote_sec" data-key="who_am_i.quote_secondary" required></textarea>
+                </div>
+
+                <div style="border-top: 1px solid var(--color-border); margin: 2rem 0;"></div>
+
+                <div class="form-group">
+                    <label for="work_intro">Work with me - Intro Text</label>
+                    <textarea id="work_intro" data-key="work_with_me.intro" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="work_outro">Work with me - Outro Text</label>
+                    <textarea id="work_outro" data-key="work_with_me.outro" required></textarea>
+                </div>
+
+                <div style="border-top: 1px solid var(--color-border); margin: 2rem 0;"></div>
+
+                <div class="form-group">
+                    <label for="find_me_text">Find me on - Description</label>
+                    <input type="text" id="find_me_text" data-key="find_me_on.text" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+
+            <!-- Tab 2: Stats -->
+            <div id="stats-tab" class="tab-content">
+                <div class="stats-edit-grid">
+                    <div class="form-group">
+                        <label for="stat_storytelling">Storytelling Years</label>
+                        <input type="text" id="stat_storytelling" data-key="stats.storytelling_years" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stat_guests">Guests Hosted (k+)</label>
+                        <input type="text" id="stat_guests" data-key="stats.guests_hosted" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="stat_community">Community Size (M+)</label>
+                        <input type="text" id="stat_community" data-key="stats.community_size" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+            
+        </form>
+
+        <!-- Tab 3: Gallery Images -->
+        <div id="gallery-tab" class="tab-content">
+            <div class="upload-zone" id="uploadZone" onclick="triggerFileInput()">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 16 12 12 8 16"></polyline>
+                    <line x1="12" y1="12" x2="12" y2="21"></line>
+                    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                    <polyline points="16 16 12 12 8 16"></polyline>
+                </svg>
+                <p>Drag & drop images here or click to browse</p>
+                <span>Supports JPG, JPEG, PNG, WEBP files</span>
+                <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="handleFileUpload(event)">
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">Current Frames</h3>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">Status message here</div>
+
+    <script>
+        let fullContent = {};
+
+        // Run on load: Check if password exists in localStorage
+        window.addEventListener('load', () => {
+            const password = localStorage.getItem('cms_password');
+            if (password) {
+                verifyAuth(password);
+            }
+        });
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.className = `toast visible ${isError ? 'toast-error' : 'toast-success'}`;
+            setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 3000);
+        }
+
+        // Authentication Handlers
+        function handleLogin(e) {
+            e.preventDefault();
+            const password = document.getElementById('passwordInput').value;
+            verifyAuth(password);
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('cms_password');
+            document.getElementById('cmsPanel').style.display = 'none';
+            document.getElementById('authPanel').style.display = 'block';
+            document.getElementById('passwordInput').value = '';
+        }
+
+        async function verifyAuth(password) {
+            // Verify by fetching content with auth header
+            try {
+                const res = await fetch('/api/content', {
+                    headers: { 'Authorization': `Bearer ${password}` }
+                });
+                if (res.status === 401) {
+                    showToast('Incorrect password', true);
+                    handleLogout();
+                } else if (res.ok) {
+                    localStorage.setItem('cms_password', password);
+                    document.getElementById('authPanel').style.display = 'none';
+                    document.getElementById('cmsPanel').style.display = 'block';
+                    loadData(password);
+                } else {
+                    showToast('Server error', true);
+                }
+            } catch (err) {
+                showToast('Unable to connect to server', true);
+            }
+        }
+
+        // Tabs Logic
+        function switchTab(e, tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+
+            e.target.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Data Loader
+        async function loadData(password) {
+            try {
+                // Load texts
+                const contentRes = await fetch('/api/content');
+                fullContent = await contentRes.json();
+                
+                // Populate text form inputs
+                const inputs = document.querySelectorAll('input[data-key], textarea[data-key]');
+                inputs.forEach(input => {
+                    const key = input.getAttribute('data-key');
+                    const value = key.split('.').reduce((acc, part) => acc && acc[part], fullContent);
+                    if (value !== undefined) {
+                        input.value = value;
+                    }
+                });
+
+                // Load gallery images
+                loadGallery();
+            } catch (err) {
+                showToast('Failed to load website content', true);
+            }
+        }
+
+        async function loadGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #7c7775;">Loading gallery frames...</p>';
+            
+            try {
+                const res = await fetch('/api/gallery');
+                const images = await res.json();
+                
+                if (images.length === 0) {
+                    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #7c7775;">No frames in the gallery.</p>';
+                    return;
+                }
+
+                grid.innerHTML = '';
+                images.forEach(filename => {
+                    const card = document.createElement('div');
+                    card.className = 'gallery-card';
+                    
+                    const img = document.createElement('img');
+                    img.src = `gallery images/${filename}`;
+                    img.loading = 'lazy';
+                    
+                    const overlay = document.createElement('div');
+                    overlay.className = 'gallery-card-overlay';
+                    
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn btn-danger';
+                    deleteBtn.innerText = 'Delete';
+                    deleteBtn.onclick = () => deleteImage(filename);
+                    
+                    overlay.appendChild(deleteBtn);
+                    card.appendChild(img);
+                    card.appendChild(overlay);
+                    grid.appendChild(card);
+                });
+            } catch (err) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #f44336;">Failed to load gallery images.</p>';
+            }
+        }
+
+        // Save text copy and stats
+        async function saveContent(e) {
+            e.preventDefault();
+            const password = localStorage.getItem('cms_password');
+            const inputs = document.querySelectorAll('input[data-key], textarea[data-key]');
+            
+            // Map inputs back to content object
+            inputs.forEach(input => {
+                const key = input.getAttribute('data-key');
+                const value = input.value;
+                
+                const parts = key.split('.');
+                if (parts.length === 2) {
+                    if (!fullContent[parts[0]]) fullContent[parts[0]] = {};
+                    fullContent[parts[0]][parts[1]] = value;
+                }
+            });
+
+            try {
+                const res = await fetch('/api/content', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${password}`
+                    },
+                    body: JSON.stringify(fullContent)
+                });
+                
+                if (res.ok) {
+                    showToast('Website content saved successfully!');
+                } else {
+                    const errData = await res.json();
+                    showToast(errData.error || 'Failed to save content', true);
+                }
+            } catch (err) {
+                showToast('Network error: Failed to save changes', true);
+            }
+        }
+
+        // Image file management
+        function triggerFileInput() {
+            document.getElementById('fileInput').click();
+        }
+
+        async function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const password = localStorage.getItem('cms_password');
+            const formData = new FormData();
+            formData.append('image', file);
+
+            showToast('Uploading image...');
+
+            try {
+                const res = await fetch('/api/gallery/upload', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${password}` },
+                    body: formData
+                });
+                
+                if (res.ok) {
+                    showToast('Image uploaded successfully!');
+                    loadGallery();
+                } else {
+                    const errData = await res.json();
+                    showToast(errData.error || 'Upload failed', true);
+                }
+            } catch (err) {
+                showToast('Failed to upload image due to network error', true);
+            }
+        }
+
+        async function deleteImage(filename) {
+            if (!confirm(`Are you sure you want to delete this frame? \nFilename: ${filename}`)) return;
+            
+            const password = localStorage.getItem('cms_password');
+            try {
+                const res = await fetch('/api/gallery/delete', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${password}`
+                    },
+                    body: JSON.stringify({ filename })
+                });
+
+                if (res.ok) {
+                    showToast('Image deleted successfully');
+                    loadGallery();
+                } else {
+                    const errData = await res.json();
+                    showToast(errData.error || 'Failed to delete image', true);
+                }
+            } catch (err) {
+                showToast('Network error: Failed to delete image', true);
+            }
+        }
+
+        // Drag & Drop Handlers
+        const uploadZone = document.getElementById('uploadZone');
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                uploadZone.classList.add('dragover');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                uploadZone.classList.remove('dragover');
+            }, false);
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files && files.length > 0) {
+                document.getElementById('fileInput').files = files;
+                handleFileUpload({ target: { files } });
+            }
+        }, false);
+
+    </script>
+</body>
+</html>

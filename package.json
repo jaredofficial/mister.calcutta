@@ -1,0 +1,10 @@
+{
+  "name": "mister-calcutta-cms",
+  "version": "1.0.0",
+  "description": "Local CMS server for Mister Calcutta website",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
