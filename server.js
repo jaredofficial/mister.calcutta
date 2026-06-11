@@ -7,6 +7,12 @@ const app = express();
 const PORT = 8080;
 const ADMIN_PASSWORD = 'ifte'; // Simple password for testing
 
+// Request Logger Middleware
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -84,11 +90,30 @@ app.get('/api/gallery', (req, res) => {
     });
 });
 
+// Helper function to update gallery.json file
+function updateGalleryJson() {
+    const galleryDir = path.join(__dirname, 'gallery images');
+    fs.readdir(galleryDir, (err, files) => {
+        if (err) {
+            console.error('Failed to read gallery dir:', err);
+            return;
+        }
+        const images = files.filter(file => {
+            const ext = path.extname(file).toLowerCase();
+            return ['.webp', '.jpg', '.jpeg', '.png'].includes(ext);
+        });
+        fs.writeFile(path.join(__dirname, 'gallery.json'), JSON.stringify(images, null, 2), 'utf8', (err) => {
+            if (err) console.error('Failed to update gallery.json:', err);
+        });
+    });
+}
+
 // API Route: Upload gallery image
 app.post('/api/gallery/upload', authMiddleware, upload.single('image'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: 'No image file uploaded' });
     }
+    updateGalleryJson();
     res.json({ success: true, filename: req.file.filename });
 });
 
@@ -110,6 +135,7 @@ app.post('/api/gallery/delete', authMiddleware, (req, res) => {
             }
             return res.status(500).json({ error: 'Failed to delete file' });
         }
+        updateGalleryJson();
         res.json({ success: true, message: `Deleted ${safeFilename} successfully` });
     });
 });

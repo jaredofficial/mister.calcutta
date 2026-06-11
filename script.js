@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // --- Dynamic CMS and Gallery Fetch ---
     try {
         const [contentRes, galleryRes] = await Promise.all([
-            fetch('/api/content'),
-            fetch('/api/gallery')
+            fetch('content.json'),
+            fetch('gallery.json')
         ]);
         
         const content = await contentRes.json();

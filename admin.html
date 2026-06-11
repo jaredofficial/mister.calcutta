@@ -587,11 +587,23 @@
                     document.getElementById('authPanel').style.display = 'none';
                     document.getElementById('cmsPanel').style.display = 'block';
                     loadData(password);
+                } else if (res.status === 404) {
+                    // Netlify static fallback
+                    showToast('Static preview mode unlocked (saving disabled)', false);
+                    localStorage.setItem('cms_password', password);
+                    document.getElementById('authPanel').style.display = 'none';
+                    document.getElementById('cmsPanel').style.display = 'block';
+                    loadData(password);
                 } else {
                     showToast('Server error', true);
                 }
             } catch (err) {
-                showToast('Unable to connect to server', true);
+                // Local static file or offline fallback
+                showToast('Static preview mode unlocked (saving disabled)', false);
+                localStorage.setItem('cms_password', password);
+                document.getElementById('authPanel').style.display = 'none';
+                document.getElementById('cmsPanel').style.display = 'block';
+                loadData(password);
             }
         }
 
@@ -608,7 +620,7 @@
         async function loadData(password) {
             try {
                 // Load texts
-                const contentRes = await fetch('/api/content');
+                const contentRes = await fetch('content.json');
                 fullContent = await contentRes.json();
                 
                 // Populate text form inputs
@@ -633,7 +645,7 @@
             grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #7c7775;">Loading gallery frames...</p>';
             
             try {
-                const res = await fetch('/api/gallery');
+                const res = await fetch('gallery.json');
                 const images = await res.json();
                 
                 if (images.length === 0) {

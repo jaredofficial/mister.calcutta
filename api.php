@@ -114,6 +114,23 @@ switch ($route) {
         }
         break;
         
+// Helper to update gallery.json file
+function update_gallery_json() {
+    $dir = 'gallery images';
+    if (!is_dir($dir)) return;
+    $files = scandir($dir);
+    $images = [];
+    foreach ($files as $file) {
+        if ($file === '.' || $file === '..') continue;
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+        if (in_array($ext, ['webp', 'jpg', 'jpeg', 'png'])) {
+            $images[] = $file;
+        }
+    }
+    sort($images);
+    file_put_contents('gallery.json', json_encode($images, JSON_PRETTY_PRINT));
+}
+
     case 'upload':
         if ($method === 'POST') {
             require_auth($admin_password);
@@ -129,6 +146,7 @@ switch ($route) {
             $target = 'gallery images/' . $name;
             
             if (move_uploaded_file($file['tmp_name'], $target)) {
+                update_gallery_json();
                 echo json_encode(["success" => true, "filename" => $name]);
             } else {
                 http_response_code(500);
@@ -157,6 +175,7 @@ switch ($route) {
             }
             
             if (unlink($path)) {
+                update_gallery_json();
                 echo json_encode(["success" => true, "message" => "Deleted $filename successfully"]);
             } else {
                 http_response_code(500);
