@@ -14,7 +14,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Page Loader / Intro Reveal -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo-frame">
+                <img src="Mister Calcutta Brand Logos/logo.webp" alt="Mister Calcutta" class="loader-logo-img">
+            </div>
+            <div class="loader-progress-track">
+                <div class="loader-progress-bar" id="loaderProgressBar"></div>
+            </div>
+            <p class="loader-text">Storyteller. Curator. Heritage Entrepreneur.</p>
+        </div>
+    </div>
+
     <div class="texture-overlay"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -29,8 +45,44 @@
                 <a href="#reels" class="nav-item">My gallery</a>
             </div>
             <a href="https://wa.me/919830184030" target="_blank" rel="noopener noreferrer" class="btn nav-cta">Let's Talk</a>
+            <button class="hamburger-btn" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <div class="mobile-menu-links">
+                <a href="#who-i-am" class="mobile-menu-item">My story</a>
+                <a href="#what-i-do" class="mobile-menu-item">What I do</a>
+                <a href="#work-with-me" class="mobile-menu-item">Work with me</a>
+                <a href="#reels" class="mobile-menu-item">My gallery</a>
+                <a href="#blogs" class="mobile-menu-item">Blogs</a>
+                <a href="https://wa.me/919830184030" target="_blank" rel="noopener noreferrer" class="btn btn-primary mobile-menu-cta">Let's Talk</a>
+            </div>
+            <div class="mobile-menu-socials">
+                <a href="https://instagram.com/mister.calcutta" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://www.youtube.com/@MisterCalcutta" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.54a29 29 0 0 0 .46 5.12 2.78 2.78 0 0 0 1.95 1.96C5.12 19 12 19 12 19s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96 29 29 0 0 0 .46-5.12 29 29 0 0 0-.46-5.12z"></path><polygon points="9.75 15.02 15.5 11.54 9.75 8.07 9.75 15.02"></polygon></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/iftekharahsan/" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="https://wa.me/919830184030" target="_blank" rel="noopener noreferrer" class="mobile-social-link" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                </a>
+                <a href="mailto:ifte@calcuttawalks.com" class="mobile-social-link" aria-label="Email">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <main class="smooth-scroll-container">
         <!-- Section 1 — Hero -->
@@ -38,7 +90,7 @@
             <div class="hero-banner-container">
                 <img src="pc%20banner%20new.png" alt="Mister Calcutta Banner" class="hero-pc-banner">
                 <div class="hero-banner-content">
-                    <a href="#what-i-do" class="btn btn-primary hero-banner-btn">WORK WITH ME</a>
+                    <a href="#work-with-me" class="btn btn-primary hero-banner-btn">WORK WITH ME</a>
                 </div>
             </div>
         </section>
@@ -49,33 +101,33 @@
                 <div class="my-brands-card">
                     <h2 class="section-heading-brands text-center">My brands</h2>
                     <div class="brands-grid-screenshot">
-                        <div class="brand-item">
+                        <a href="https://calcuttawalks.com" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/calcutta walks.png" alt="Calcutta Walks" class="brand-logo">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://calcuttabungalow.com" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/calcutta bungalow (2).png" alt="Calcutta Bungalow" class="brand-logo">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://www.instagram.com/artcafe.ccu?igsh=eGliNGxuOWQyZnVs" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/art cafe.png" alt="Art Cafe" class="brand-logo">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://www.kalimpongbungalow.com/" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/KAMLIMPONG_bungalow-removebg-preview.png" alt="Kalimpong Bungalow" class="brand-logo">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://www.instagram.com/calcuttarooms?igsh=MWtvc3F1aW5vbWxodw==" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/calcutta rooms.png" alt="Calcutta Rooms" class="brand-logo">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://www.instagram.com/calcuttacollectibles/" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/calcutta collectibles.png" alt="Calcutta Collectibles" class="brand-logo">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://www.instagram.com/calcuttaunschoolers/" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/calcutta unschoolers.png" alt="Calcutta Unschoolers" class="brand-logo brand-unschoolers">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://instagram.com/mister.calcutta" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/main logo.webp" alt="Mister Calcutta" class="brand-logo">
-                        </div>
-                        <div class="brand-item">
+                        </a>
+                        <a href="https://www.instagram.com/calcuttacreativeunit?igsh=bjIxMGVkcWUzaXU2" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/calcutta creative unit.png" alt="Calcutta Creative Unit" class="brand-logo">
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -130,8 +182,10 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">Early 2000s</span>
-                                <h3 class="timeline-heading">Calcutta walks</h3>
-                                <p>Founded in 2007, Calcutta Walks was one of India's first heritage walking tour companies. Not a tour company in the conventional sense, Calcutta Walks is dedicated to the notion of pro-Calcutta, eco-friendly tourism; walking the city rather than tooling around in gas-guzzling vehicles, led by people I call explorers, never guides. Together, we have conducted over 10,000 walks, covered 110,000 kilometres on foot, and hosted over 50,000 walkers from across the world.</p>
+                                <h3 class="timeline-heading">Calcutta Walks</h3>
+                                <p>Founded in 2007, Calcutta Walks was one of India's first heritage walking tour companies.</p>
+                                <p>Not a tour company in the conventional sense, Calcutta Walks is dedicated to the notion of pro-Calcutta, eco-friendly tourism; walking the city rather than tooling around in gas-guzzling vehicles, led by people I call explorers, never guides.</p>
+                                <p>Together, we have conducted over 10,000 walks, covered 110,000 kilometres on foot, and hosted over 50,000 walkers from across the world.</p>
                             </div>
                         </div>
 
@@ -139,11 +193,18 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">2013-2018</span>
-                                <h3 class="timeline-heading">Calcutta bungalow</h3>
-                                <p>For years, I was showing people beautiful, crumbling buildings, pointing at carved balconies and peeling facades, telling their stories, and then walking away.<br>At some point that started to feel insufficient.</p>
-                                <p>In 2013, while leading one of my walks, I had my moment of inflection, words alone wouldn't save the city - I needed to do something tangible. I found a 1926 townhouse in the heart of North Calcutta, once the home of the Majumdar family, then abandoned for years. The walls needed more love than I initially anticipated. But the bones were good, and<br>there was something about the place that felt worth saving.</p>
-                                <p>None of what followed was done alone. My closest friend and business partner Chris Chen came on board, designer Swarup Dutta brought the vision to life room by room, and a team of craftspeople did the kind of work that simply cannot be rushed.</p>
-                                <p>It took two years to acquire and three years to restore the building to its original form and then in 2018, Calcutta Bungalow opened its doors to all. Six rooms, each named after a Calcutta neighbourhood and the community that defined it. A rooftop café. A souvenir shop. An Ambassador parked outside. It is not a grand hotel. It was never meant to be. It is simply a boutique stay that tries to be honest about where it comes from.</p>
+                                <h3 class="timeline-heading">Calcutta Bungalow</h3>
+                                <p>For years, I was showing people beautiful, crumbling buildings, pointing at carved balconies and peeling facades, telling their stories, and then walking away.</p>
+                                <p>At some point that started to feel insufficient.</p>
+                                
+                                <button class="btn-read-more" onclick="const parent = this.parentElement; const more = parent.querySelector('.timeline-more-content'); if(more.style.display==='none' || more.style.display===''){more.style.display='block'; this.innerText='READ LESS';}else{more.style.display='none'; this.innerText='READ MORE';} if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
+                                
+                                <div class="timeline-more-content" style="display: none;">
+                                    <p>In 2013, while leading one of my walks, I had my moment of inflection that words alone wouldn't save the city, I realised I needed to do something tangible.</p>
+                                    <p>I found a 1926 townhouse in the heart of North Calcutta, once the home of the Majumdar family, then abandoned for years. The walls needed more love than I initially anticipated but the bones were good, and there was something about the place that felt worth saving.</p>
+                                    <p>None of what followed was done alone. My closest friend and business partner Chris Chen came on board, designer Swarup Dutta brought the vision to life room by room, and a team of craftspeople did the kind of work that simply cannot be rushed.</p>
+                                    <p>It took two years to acquire and three years to restore the building to its original form and then in 2018, Calcutta Bungalow opened its doors to all.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -151,8 +212,14 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">2018</span>
-                                <h3 class="timeline-heading">US State Department IVLP fellow</h3>
-                                <p>In 2018, I was selected as an International Visitor Leadership Program Fellow in Sustainable Tourism by the United States government - one of the most competitive cultural exchange fellowships awarded to emerging international leaders. It was one of those moments that made me realise that what felt like a very personal, very Calcutta obsession was actually speaking to something universal that people everywhere are hungry for travel that means something, that connects rather than consumes. I came back from that fellowship more convinced than ever that the work mattered.</p>
+                                <h3 class="timeline-heading">US State department IVLP Fellow</h3>
+                                <p>In 2018, I was selected as an International Visitor Leadership Program Fellow in Sustainable Tourism by the United States government, one of the most competitive cultural exchange fellowships awarded to emerging international leaders.</p>
+                                
+                                <button class="btn-read-more" onclick="const parent = this.parentElement; const more = parent.querySelector('.timeline-more-content'); if(more.style.display==='none' || more.style.display===''){more.style.display='block'; this.innerText='READ LESS';}else{more.style.display='none'; this.innerText='READ MORE';} if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
+                                
+                                <div class="timeline-more-content" style="display: none;">
+                                    <p>It was one of those moments that made me realise that what felt like a very personal, very Calcutta obsession was actually speaking to something universal that people everywhere are hungry for travel that means something, that connects rather than consumes. I came back from that fellowship more convinced than ever that the work mattered.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -160,12 +227,17 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">2020</span>
-                                <h3 class="timeline-heading">Calcutta unschoolers</h3>
-                                <p>During the lockdown, my wife Shaheera and I made a decision that raised a few eyebrows. We chose to unschool our twins - Isa and Shehrezad. No classrooms. No textbooks. No bells telling them when to stop thinking about one thing and start thinking about another.</p>
-                                <p>Isa, our son, is obsessed with cricket. And so he taught himself mathematics through the game - scorecards, run rates, strike rates, averages, probability, statistics. Nobody sat him down and taught him any of it. The sport gave him numbers that actually meant something, attached to moments he actually cared about. That is what real learning looks like.</p>
-                                <p>Shehrezad, our daughter, is the creative soul of the family. She reads everything she can get her hands on - fiction, history, philosophy, cookbooks. She attends workshops, makes things with her hands, draws, writes, asks questions that frankly leave us scrambling for answers.</p>
-                                <p>Together, they learn by being in the world, meeting people from different walks of life, visiting places that have stories to tell, sitting with craftspeople and artists and farmers and historians and just absorbing. At 12, they have already visited 15 countries. But the travel is just one part of it. What we are really trying to do is raise humans who are curious, who are kind, who know how to learn anything because they have never been told that learning has a fixed shape.</p>
-                                <p>What began as our family's private conviction has slowly grown into something larger. Calcutta Unschoolers is a community we are building for parents and children who are asking the same questions we asked and finding, as we did, that the answers are more liberating than frightening.</p>
+                                <h3 class="timeline-heading">Calcutta Unschoolers</h3>
+                                <p>During the lockdown, my wife Shaheera and I made a decision that raised a few eyebrows. We chose to unschool our twins; Isa and Shehrezad. No classrooms. No textbooks. No bells telling them when to stop thinking about one thing and start thinking about another.</p>
+                                
+                                <button class="btn-read-more" onclick="const parent = this.parentElement; const more = parent.querySelector('.timeline-more-content'); if(more.style.display==='none' || more.style.display===''){more.style.display='block'; this.innerText='READ LESS';}else{more.style.display='none'; this.innerText='READ MORE';} if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
+                                
+                                <div class="timeline-more-content" style="display: none;">
+                                    <p>Isa, our son, is obsessed with cricket. And so he taught himself mathematics through the game - scorecards, run rates, strike rates, averages, probability, statistics. Nobody sat him down and taught him any of it. The sport gave him numbers that actually meant something, attached to moments he actually cared about. That is what real learning looks like.</p>
+                                    <p>Shehrezad, our daughter, is the creative soul of the family. She reads everything she can get her hands on - fiction, history, philosophy, cookbooks. She attends workshops, makes things with her hands, draws, writes, asks questions that frankly leave us scrambling for answers.</p>
+                                    <p>Together, they learn by being in the world, meeting people from different walks of life, visiting places that have stories to tell, sitting with craftspeople and artists and farmers and historians and just absorbing. At 12, they have already visited 15 countries. But the travel is just one part of it. What we are really trying to do is raise humans who are curious, who are kind, who know how to learn anything because they have never been told that learning has a fixed shape.</p>
+                                    <p>What began as our family's private conviction has slowly grown into something larger. This is a community we are building for parents and children who are asking the same questions we asked and finding, as we did, that the answers are more liberating than frightening.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -173,9 +245,15 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">2024</span>
-                                <h3 class="timeline-heading">Art cafe</h3>
+                                <h3 class="timeline-heading">Art Cafe</h3>
                                 <p>The Art Cafe was never supposed to be my project. It belonged to Pravesh and Yachna who had built something quietly wonderful in Kalimpong, a cafe rooted in the belief that a space can hold a community together. When the conversation began about bringing it to Calcutta, it felt natural. Because it was the same instinct as Calcutta Bungalow - find a forgotten space, restore it with love, fill it with the flavours and textures of the place it belongs to.</p>
-                                <p>In 2024, Art Cafe became part of our family of brands - Shaheera and I came on board alongside Chris and Suman, and together with Pravesh and Yachna, brought it to Kolkata. Two outlets, each a partnership between old friends who happen to believe in the same things. Jhol momos, buckwheat crepes, flourless cakes, cheese sourced directly from the Kalimpong hills.<br>And walls that have something to say.</p>
+                                
+                                <button class="btn-read-more" onclick="const parent = this.parentElement; const more = parent.querySelector('.timeline-more-content'); if(more.style.display==='none' || more.style.display===''){more.style.display='block'; this.innerText='READ LESS';}else{more.style.display='none'; this.innerText='READ MORE';} if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
+                                
+                                <div class="timeline-more-content" style="display: none;">
+                                    <p>In 2024, Art Cafe became part of our family of brands. Shaheera, my wife and I came on board alongside Chris and Suman, and together with Pravesh and Yachna, brought it to Kolkata.</p>
+                                    <p>Two outlets in the heart of the city, each a partnership between old friends who happen to believe in the same things. Jhol momos, buckwheat crepes, flourless cakes, cheese sourced directly from the Kalimpong hills. And walls that have something to say.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -183,9 +261,31 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">2025</span>
-                                <h3 class="timeline-heading">Calcutta rooms & Kalimpong bungalow</h3>
-                                <p>Over the years, we are growing the hospitality portfolio, not because of a plan on paper, but because the right spaces appeared and demanded to be rescued. Calcutta Rooms takes the Calcutta Bungalow philosophy and scatters it across the city's oldest neighbourhoods, intimate stays that put you not just in Calcutta, but inside its specific communities and stories.</p>
-                                <p>Kalimpong Bungalow does the same thing at altitude; a heritage property in the misty hills where Bengal's colonial past meets Himalayan calm, where the mornings smell of woodsmoke and the evenings go very quiet very quickly. Both are distinct expressions of the same conviction: that where you sleep shapes what you see.</p>
+                                <h3 class="timeline-heading">Kalimpong Bungalow</h3>
+                                <p>When it came to us, we did not want to change it. We wanted to honour it. We renamed it Kalimpong Bungalow, not to rebrand it, but to root it more honestly in the place it belongs to. Kalimpong has a colonial past where Scottish missionaries, Tibetan traders, and Nepali communities once lived side by side, and left traces that are still visible if you know where to look. This bungalow sits inside all of that history.</p>
+                                
+                                <button class="btn-read-more" onclick="const parent = this.parentElement; const more = parent.querySelector('.timeline-more-content'); if(more.style.display==='none' || more.style.display===''){more.style.display='block'; this.innerText='READ LESS';}else{more.style.display='none'; this.innerText='READ MORE';} if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
+                                
+                                <div class="timeline-more-content" style="display: none;">
+                                    <p>When it came to us, we did not want to change it. We wanted to honour it. We renamed it Kalimpong Bungalow, not to rebrand it, but to root it more honestly in the place it belongs to. Kalimpong has a colonial past where Scottish missionaries, Tibetan traders, and Nepali communities once lived side by side, and left traces that are still visible if you know where to look. This bungalow sits inside all of that history.</p>
+                                    <p>My job, as always, was simple; listen to the land, learn from its people, and build something that feels like it belongs here. Warm, lived in, full of stories. Like those old Kalimpong homes that hold the memory of everyone who ever passed through them.</p>
+                                    <p>You may come for the mountains. You will stay for everything else.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2026</span>
+                                <h3 class="timeline-heading">Calcutta Rooms</h3>
+                                <p>The same instinct that built Calcutta Bungalow - find a beautiful, forgotten space and give it a second life now extends across the city's neighbourhoods.</p>
+                                
+                                <button class="btn-read-more" onclick="const parent = this.parentElement; const more = parent.querySelector('.timeline-more-content'); if(more.style.display==='none' || more.style.display===''){more.style.display='block'; this.innerText='READ LESS';}else{more.style.display='none'; this.innerText='READ MORE';} if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
+                                
+                                <div class="timeline-more-content" style="display: none;">
+                                    <p>Calcutta Rooms is our version of a home stay, but rooted in the same philosophy of slow, honest hospitality. We begin with <em>Sen's Homestay</em>, a lovingly kept home in the heart of South Calcutta. It will not be the last. There are too many houses in this city with too many stories still left in their walls and we intend to find them.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -193,10 +293,15 @@
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">Now</span>
-                                <h3 class="timeline-heading">Mister Calcutta & Calcutta creative unit</h3>
-                                <p>For over 20 years, I could only reach the people who came to me, who walked through the door, booked a walk, stayed at the bungalow. And I was grateful for every single one of them. But there was a whole world of people who would never think to come to Calcutta, who had never heard its stories, who did not even know what they were missing. I wanted to reach them.<br>So I started telling Calcutta's stories online.</p>
-                                <p>Through @mister.calcutta on Instagram & YouTube, I make short films - about the city's Armenian community, its last Jewish families, its Chinese neighbourhood, its forgotten graveyards, its disappearing crafts. About the fact that the world's first fingerprint bureau was here. That the cure for malaria was discovered here. Calcutta is a city of firsts that somehow never got around to telling its own story loudly enough. We are trying to fix that, one video at a time, from the exact streets and doorways where these stories unfolded.</p>
-                                <p>Alongside this, my team and I are building the Calcutta Creative Unit - CCU. The name is not accidental. CCU are also the three letters that have always stood for this city. Born here, shaped by everything this city has taught us about depth, about patience, about telling things straight. The market is full of agencies that chase reach, manufacture content, and measure success in vanity metrics. What it lacks is meaningful storytelling, real brand building, and the patience to see it through. CCU exists to fill that gap. We work with brands built with intention, helping them uncover their real story and bring it to the world through content, campaigns, and creativity that actually means something. We don't just grow audiences. We build communities. Calcutta taught us that.<br>Now we want to take that to the world.</p>
+                                <h3 class="timeline-heading">Mister Calcutta & Calcutta Creative Unit</h3>
+                                <p>For over 20 years, I could only reach the people who came to me, who walked through the door, booked a walk, stayed at the bungalow. And I was grateful for every single one of them. But there was a whole world of people who would never think to come to Calcutta, who had never heard its stories, who did not even know what they were missing. I wanted to reach them. So I started telling Calcutta's stories online.</p>
+                                
+                                <button class="btn-read-more" onclick="const parent = this.parentElement; const more = parent.querySelector('.timeline-more-content'); if(more.style.display==='none' || more.style.display===''){more.style.display='block'; this.innerText='READ LESS';}else{more.style.display='none'; this.innerText='READ MORE';} if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
+                                
+                                <div class="timeline-more-content" style="display: none;">
+                                    <p>Through @mister.calcutta on Instagram & YouTube, I make short films about the city's Armenian community, its last Jewish families, its Chinese neighbourhood, its forgotten graveyards, its disappearing crafts. About the fact that the world's first fingerprint bureau was here. That the cure for malaria was discovered here. Calcutta is a city of firsts that somehow never got around to telling its own story loudly enough. We are trying to fix that, one video at a time, from the exact streets and doorways where these stories unfolded.</p>
+                                    <p>Alongside this, my team and I are building the <em>Calcutta Creative Unit - CCU</em>. The name is not accidental. CCU are also the three letters that have always stood for this city. Born here, shaped by everything this city has taught us about depth, about patience, about telling things straight. The market is full of agencies that chase reach, manufacture content, and measure success in vanity metrics. What it lacks is meaningful storytelling, real brand building, and the patience to see it through. CCU exists to fill that gap. We work with brands built with intention, helping them uncover their real story and bring it to the world through content, campaigns, and creativity that actually means something. We don't just grow audiences. We build communities. Calcutta taught us that. Now we want to take that to the world.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -307,7 +412,7 @@
                                 <h3>International Collaborations</h3>
                                 <div class="international-collab-text">
                                     <p>Every city in the world has a Calcutta thread connecting back to communities across the globe. These threads are real, documented, and waiting to be told. The Armenians of Calcutta trace back to Isfahan. The Baghdadi Jewish community connects to Baghdad and Tel Aviv. The Hakka Chinese of Tiretti Bazaar have cousins in Penang and Toronto. The indentured labourers who left from Calcutta's docks in the 19th century built communities in Mauritius, Fiji, Trinidad, and South Africa.</p>
-                                    <p class="read-more-btn" onclick="const next = this.nextElementSibling; const parent = this.closest('.cinematic-text'); if(next.style.display === 'none' || next.style.display === ''){ next.style.display = 'block'; this.textContent = '<READ LESS>'; if(parent) parent.style.overflowY = 'auto'; } else { next.style.display = 'none'; this.textContent = '<READ MORE>'; if(parent) { parent.style.overflowY = 'hidden'; parent.scrollTop = 0; } }" style="color: #b7582c; font-weight: 700; margin: 0.15rem 0; cursor: pointer; display: inline-block;">&lt;READ MORE&gt;</p>
+                                    <button class="btn-read-more" onclick="const next = this.nextElementSibling; const parent = this.closest('.cinematic-text'); if(next.style.display === 'none' || next.style.display === ''){ next.style.display = 'block'; this.innerText = 'READ LESS'; if(parent) parent.style.overflowY = 'auto'; } else { next.style.display = 'none'; this.innerText = 'READ MORE'; if(parent) { parent.style.overflowY = 'hidden'; parent.scrollTop = 0; } } if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
                                     <p class="more-text-expand" style="display: none;">If you are a cultural institution, a diaspora organisation, a destination, or simply a place with a story that connects back to this city, I want to find that thread and tell it to the world. I can visit, explore, film, and create content that brings your story to a global audience. I can speak, walk, and collaborate. The format is always secondary. The story comes first.</p>
                                 </div>
                                 <div class="card-tags">
@@ -475,13 +580,13 @@ Write to me.</p>
                         </div>
                         <span class="social-username">@mister.calcutta</span>
                     </a>
-                    <a href="https://linkedin.com/" target="_blank" class="social-link">
+                    <a href="https://www.linkedin.com/in/iftekharahsan/" target="_blank" class="social-link">
                         <div class="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                         </div>
                         <span class="social-username">Iftekhar Ahsan</span>
                     </a>
-                    <a href="https://youtube.com/" target="_blank" class="social-link">
+                    <a href="https://www.youtube.com/@MisterCalcutta" target="_blank" class="social-link">
                         <div class="social-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
                         </div>
@@ -506,55 +611,106 @@ Write to me.</p>
                     <div class="carousel-track reels-track">
                         <!-- Reel 1 -->
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/1.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
                         </a>
                         <!-- Reel 2 -->
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/2.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
                         </a>
                         <!-- Reel 3 -->
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/3.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
                         </a>
                         <!-- Reel 4 -->
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/4.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
                         </a>
                         <!-- Reel 5 -->
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/5.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
                         </a>
-                        
+                        <!-- Reel 6 -->
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/6.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+                        <!-- Reel 7 -->
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/7.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+                        <!-- Reel 8 -->
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/8.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+
                         <!-- Duplicates for infinite scroll -->
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/1.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
                         </a>
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/2.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
                         </a>
                         <a href="https://instagram.com" target="_blank" class="reel-link">
-                            <video autoplay loop muted playsinline class="reel-video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/3.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/4.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/5.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/6.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/7.mp4"></video>
+                            <div class="reel-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="reel-link">
+                            <video autoplay loop muted playsinline class="reel-video" src="reels/8.mp4"></video>
                             <div class="reel-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"></path></svg>
                             </div>
@@ -920,6 +1076,7 @@ Write to me.</p>
         </section>
 
         <!-- Section 9 — Premium Footer -->
+        <!-- Section 9 — Premium Footer -->
         <footer class="footer">
             <div class="container">
                 <div class="footer-top">
@@ -928,6 +1085,23 @@ Write to me.</p>
                             <img src="Mister Calcutta Brand Logos/main logo.webp" alt="Mister Calcutta" class="footer-logo-img">
                         </div>
                         <p class="footer-tagline">Preserving the stories of<br>a city etched in time.</p>
+                        <div class="footer-socials">
+                            <a href="https://instagram.com/mister.calcutta" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
+                            <a href="https://www.youtube.com/@MisterCalcutta" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="YouTube">
+                                <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.54a29 29 0 0 0 .46 5.12 2.78 2.78 0 0 0 1.95 1.96C5.12 19 12 19 12 19s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96 29 29 0 0 0 .46-5.12 29 29 0 0 0-.46-5.12z"></path><polygon points="9.75 15.02 15.5 11.54 9.75 8.07 9.75 15.02"></polygon></svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/iftekharahsan/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
+                            <a href="https://wa.me/919830184030" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="WhatsApp">
+                                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                            </a>
+                            <a href="mailto:ifte@calcuttawalks.com" class="footer-social-link" aria-label="Email">
+                                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            </a>
+                        </div>
                     </div>
                     
                     <div class="footer-nav-grid">
@@ -935,39 +1109,34 @@ Write to me.</p>
                             <h4>Explore</h4>
                             <ul>
                                 <li><a href="#hero">Home</a></li>
-                                <li><a href="#my-brands">My Brands</a></li>
-                                <li><a href="#who-i-am">Who am I?</a></li>
-                                <li><a href="#what-i-do">What I do?</a></li>
-                                <li><a href="#featured-logos">Featured on</a></li>
+                                <li><a href="#who-i-am">My story</a></li>
+                                <li><a href="#what-i-do">What I do</a></li>
                                 <li><a href="#work-with-me">Work with me</a></li>
-                                <li><a href="#find-me-on">Find me on</a></li>
-                                <li><a href="#reels">Check out my content</a></li>
+                                <li><a href="#reels">My gallery</a></li>
                                 <li><a href="#blogs">Blogs</a></li>
                             </ul>
                         </div>
                         <div class="footer-col">
                             <h4>Ventures</h4>
                             <ul>
-                                <li><a href="http://calcuttawalks.com" target="_blank">Calcutta Walks</a></li>
-                                <li><a href="http://calcuttabungalow.com" target="_blank">Calcutta Bungalow</a></li>
-                                <li><a href="#">Calcutta Collectibles</a></li>
-                                <li><a href="#">Calcutta Unschoolers</a></li>
-                                <li><a href="#">Art Cafe</a></li>
-                                <li><a href="#">Kalimpong Bungalow</a></li>
-                                <li><a href="#">Calcutta Rooms</a></li>
-                                <li><a href="#">Mister Calcutta</a></li>
-                                <li><a href="#">Calcutta Creative Unit</a></li>
+                                <li><a href="https://calcuttawalks.com" target="_blank">Calcutta Walks</a></li>
+                                <li><a href="https://calcuttabungalow.com" target="_blank">Calcutta Bungalow</a></li>
+                                <li><a href="https://www.instagram.com/artcafe.ccu?igsh=eGliNGxuOWQyZnVs" target="_blank">Art Cafe</a></li>
+                                <li><a href="https://www.kalimpongbungalow.com/" target="_blank">Kalimpong Bungalow</a></li>
+                                <li><a href="https://www.instagram.com/calcuttarooms?igsh=MWtvc3F1aW5vbWxodw==" target="_blank">Calcutta Rooms</a></li>
+                                <li><a href="https://www.instagram.com/calcuttacollectibles/" target="_blank">Calcutta Collectibles</a></li>
+                                <li><a href="https://www.instagram.com/calcuttaunschoolers/" target="_blank">Calcutta Unschoolers</a></li>
+                                <li><a href="https://www.instagram.com/calcuttacreativeunit?igsh=bjIxMGVkcWUzaXU2" target="_blank">Calcutta Creative Unit</a></li>
                             </ul>
                         </div>
                         <div class="footer-col">
-                            <h4>Connect</h4>
+                            <h4>Contact</h4>
                             <ul>
-                                <li><a href="mailto:ifte@calcuttawalks.com">Email</a></li>
-                                <li><a href="https://instagram.com/mister.calcutta" target="_blank">Instagram</a></li>
-                                <li><a href="#">Facebook</a></li>
-                                <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
-                                <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
-                                <li><a href="https://wa.me/919830184030" target="_blank">WhatsApp</a></li>
+                                <li><a href="mailto:ifte@calcuttawalks.com">Email Me</a></li>
+                                <li><a href="https://wa.me/919830184030" target="_blank">WhatsApp Chat</a></li>
+                                <li><a href="https://wa.me/919830184030" target="_blank">Let's Talk</a></li>
+                                <li><a href="#work-with-me">Speaking Keynotes</a></li>
+                                <li><a href="#work-with-me">Brand Collabs</a></li>
                             </ul>
                         </div>
                     </div>

@@ -22,6 +22,24 @@ function splitWords() {
     });
 }
 
+// Helper to calculate ScrollTrigger-aware scroll positions for elements
+function getScrollLookup(targets, {start, pinnedContainer, containerAnimation}) {
+    let triggers = gsap.utils.toArray(targets).map(el => ScrollTrigger.create({
+        trigger: el,
+        start: start || "top top",
+        pinnedContainer: pinnedContainer,
+        containerAnimation: containerAnimation,
+        refreshPriority: -10 // runs after other ScrollTriggers to capture final layout positions
+    }));
+    
+    return (target) => {
+        let t = gsap.utils.toArray(target)[0],
+            i = triggers.length;
+        while (i-- && triggers[i].trigger !== t) {}
+        return i >= 0 ? triggers[i].start : 0;
+    };
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
 
     // --- Dynamic CMS Copy Fetch ---
@@ -43,6 +61,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             }
         });
+        if (window.ScrollTrigger) {
+            ScrollTrigger.refresh();
+        }
     } catch (err) {
         console.error("Failed to load CMS content:", err);
     }
@@ -68,55 +89,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
-    // --- Navbar ScrollSpy Logic ---
+    // --- Navbar ScrollSpy Logic (ScrollTrigger-Aware) ---
     const sections = document.querySelectorAll("section");
     const navItems = document.querySelectorAll(".nav-item");
 
-    window.addEventListener("scroll", () => {
-        let current = "";
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= (sectionTop - 150)) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove("active");
-            if (item.getAttribute("href") === `#${current}`) {
-                item.classList.add("active");
-            }
-        });
-    });
-
-    // --- Navbar Smooth Scroll Override ---
-    const allNavLinks = document.querySelectorAll('.nav-item, .nav-cta, .nav-logo');
-    allNavLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
-            const href = this.getAttribute("href");
-            if (href && href.startsWith("#")) {
-                e.preventDefault();
-                const targetId = href;
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const offset = 80; // Navbar height
-                    const bodyRect = document.body.getBoundingClientRect().top;
-                    const elementRect = targetElement.getBoundingClientRect().top;
-                    const elementPosition = elementRect - bodyRect;
-                    const offsetPosition = elementPosition - offset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
+    sections.forEach(section => {
+        const id = section.getAttribute("id");
+        if (id) {
+            const navItem = document.querySelector(`.nav-item[href="#${id}"]`);
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top center", // active when top of section crosses the center of viewport
+                end: "bottom center", // inactive when bottom of section crosses the center of viewport
+                onToggle: self => {
+                    if (self.isActive) {
+                        navItems.forEach(item => item.classList.remove("active"));
+                        if (navItem) {
+                            navItem.classList.add("active");
+                        }
+                    }
                 }
-            }
-        });
+            });
+        }
     });
+
+    // --- Smooth Scroll Override for all Hash Links ---
+    // Moved to the bottom of DOMContentLoaded to ensure all GSAP animations and ScrollTriggers are fully initialized first.
 
     // --- Hero Section Animations ---
-    const heroTl = gsap.timeline();
+    const heroTl = gsap.timeline({ paused: true });
 
     // Text reveal for Hero Title
     heroTl.from(".hero-tags-top", {
@@ -230,7 +231,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // Fade up stat items
-    gsap.from(".stat-item", {
+    gsap.from(".stat-item-screenshot", {
         scrollTrigger: {
             trigger: ".stats",
             start: "top 80%",
@@ -320,6 +321,55 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }
             });
         }
+    });
+
+    // --- Mobile Exclusive Entrance Animations ---
+    mm.add("(max-width: 991px)", () => {
+        // Scroll-trigger entrance for What I Do cards
+        gsap.utils.toArray('.horizontal-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 92%",
+                    toggleActions: "play none none none"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+
+
+        // Scroll-trigger entrance for Blog cards
+        gsap.utils.toArray('.blog-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 95%",
+                    toggleActions: "play none none none"
+                },
+                y: 25,
+                opacity: 0,
+                duration: 0.7,
+                ease: "power2.out"
+            });
+        });
+
+        // Stagger entrance for Timeline items on mobile
+        gsap.utils.toArray('.timeline-item').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 92%",
+                    toggleActions: "play none none none"
+                },
+                x: -20,
+                opacity: 0,
+                duration: 0.7,
+                ease: "power2.out"
+            });
+        });
     });
 
     // --- Generic Fade Ups ---
@@ -528,4 +578,257 @@ document.addEventListener("DOMContentLoaded", async () => {
         setTimeout(toggleButtons, 150);
     }
 
+    // --- Smooth Scroll Override for all Hash Links ---
+    // Initialize the lookup and click handlers at the end of DOMContentLoaded to ensure all other ScrollTriggers are fully initialized.
+    const allHashLinks = document.querySelectorAll('a[href^="#"]');
+    
+    // Collect all unique target selectors from hash links
+    const targetSelectors = new Set();
+    allHashLinks.forEach(link => {
+        const href = link.getAttribute("href");
+        if (href && href.startsWith("#") && href !== "#") {
+            targetSelectors.add(href);
+        }
+    });
+    
+    const targetsArray = Array.from(targetSelectors).filter(selector => document.querySelector(selector));
+    
+    // Initialize ScrollTrigger-aware scroll position lookup
+    const getPosition = getScrollLookup(targetsArray, {
+        start: "top top"
+    });
+    
+    allHashLinks.forEach(link => {
+        link.addEventListener("click", function(e) {
+            const href = this.getAttribute("href");
+            if (href && href.startsWith("#") && href !== "#") {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    // Force a recalculation of all ScrollTrigger trigger values right before lookup
+                    if (window.ScrollTrigger) {
+                        ScrollTrigger.refresh();
+                    }
+                    const navbar = document.querySelector('.navbar');
+                    const offset = navbar ? navbar.getBoundingClientRect().bottom + 45 : 160;
+                    
+                    let targetScroll = getPosition(targetElement);
+                    if (href === "#hero") {
+                        targetScroll = 0;
+                    } else if (window.innerWidth >= 992 && (href === "#who-i-am" || href === "#what-i-do" || href === "#work-with-me" || href === "#reels" || href === "#blogs")) {
+                        // For main sections on desktop, they have CSS padding/spacing built-in to clear the navbar
+                        targetScroll = Math.max(0, targetScroll);
+                    } else {
+                        targetScroll = Math.max(0, targetScroll - offset);
+                    }
+                    
+                    window.scrollTo({
+                        top: targetScroll,
+                        behavior: "smooth"
+                    });
+                }
+            }
+        });
+    });
+    // --- Mobile Hamburger Menu & Dropdown Animations ---
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuItems = document.querySelectorAll('.mobile-menu-item, .mobile-menu-cta');
+    
+    if (mobileMenuToggle && mobileMenu) {
+        // Create GSAP Timeline for Menu Entrance
+        const menuTl = gsap.timeline({ paused: true });
+        menuTl.to(mobileMenu, {
+            autoAlpha: 1,
+            duration: 0.3,
+            ease: "power2.out"
+        })
+        .to(mobileMenuItems, {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.05,
+            ease: "power3.out"
+        }, "-=0.1")
+        .to('.mobile-menu-socials', {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out"
+        }, "-=0.2");
+
+        function openMenu() {
+            mobileMenuToggle.classList.add('active');
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            menuTl.play();
+        }
+
+        function closeMenu() {
+            mobileMenuToggle.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+            menuTl.reverse();
+        }
+
+        mobileMenuToggle.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+
+        // Close menu when clicking on overlay links
+        mobileMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        // Close menu on window resize if transitioned to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 992 && mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    }
+
+    // --- Page Loader & Reveal Logic ---
+    const pageLoader = document.getElementById('pageLoader');
+    const loaderProgressBar = document.getElementById('loaderProgressBar');
+    
+    // Disable scrolling during load
+    document.body.style.overflow = 'hidden';
+    
+    // Simulate loading progress
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+        if (progress < 85) {
+            progress += Math.random() * 12;
+            if (progress > 85) progress = 85;
+            if (loaderProgressBar) {
+                loaderProgressBar.style.width = progress + '%';
+            }
+        }
+    }, 100);
+
+    function finishLoading() {
+        clearInterval(progressInterval);
+        if (loaderProgressBar) {
+            loaderProgressBar.style.width = '100%';
+        }
+        setTimeout(() => {
+            if (pageLoader) {
+                pageLoader.style.opacity = '0';
+                pageLoader.style.visibility = 'hidden';
+            }
+            document.body.style.overflow = '';
+            
+            // Start the paused Hero animation timeline
+            if (typeof heroTl !== 'undefined') {
+                heroTl.play();
+            }
+        }, 500);
+    }
+
+    if (document.readyState === 'complete') {
+        finishLoading();
+    } else {
+        window.addEventListener('load', finishLoading);
+    }
+
+    // --- Scroll Progress Indicator ---
+    const scrollProgressBar = document.getElementById('scrollProgressBar');
+    if (scrollProgressBar) {
+        const updateProgressBar = () => {
+            const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (scrollHeight > 0) {
+                const progress = (scrollTop / scrollHeight) * 100;
+                scrollProgressBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+            } else {
+                scrollProgressBar.style.width = '0%';
+            }
+        };
+        window.addEventListener('scroll', updateProgressBar, { passive: true });
+        window.addEventListener('resize', updateProgressBar);
+        // Run once initial
+        updateProgressBar();
+    }
+
+    // --- Dynamic Video Sound Toggle Injection ---
+    const videos = document.querySelectorAll('.cinematic-video, .reel-video');
+    videos.forEach(video => {
+        const container = video.parentElement;
+        if (container) {
+            // Make sure container is positioned relatively to hold absolute speaker icon
+            if (window.getComputedStyle(container).position === 'static') {
+                container.style.position = 'relative';
+            }
+            
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'video-sound-toggle';
+            toggleBtn.setAttribute('aria-label', 'Toggle Sound');
+            toggleBtn.innerHTML = `
+                <svg class="sound-icon sound-off" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+                <svg class="sound-icon sound-on" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+            `;
+            container.appendChild(toggleBtn);
+            
+            const toggleMute = (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                video.muted = !video.muted;
+                const soundOff = toggleBtn.querySelector('.sound-off');
+                const soundOn = toggleBtn.querySelector('.sound-on');
+                
+                if (video.muted) {
+                    soundOff.style.display = 'block';
+                    soundOn.style.display = 'none';
+                    toggleBtn.classList.remove('unmuted');
+                } else {
+                    soundOff.style.display = 'none';
+                    soundOn.style.display = 'block';
+                    toggleBtn.classList.add('unmuted');
+                    
+                    // Mute all other videos
+                    videos.forEach(otherVideo => {
+                        if (otherVideo !== video) {
+                            otherVideo.muted = true;
+                            const otherToggle = otherVideo.parentElement.querySelector('.video-sound-toggle');
+                            if (otherToggle) {
+                                otherToggle.querySelector('.sound-off').style.display = 'block';
+                                otherToggle.querySelector('.sound-on').style.display = 'none';
+                                otherToggle.classList.remove('unmuted');
+                            }
+                        }
+                    });
+                }
+            };
+            
+            toggleBtn.addEventListener('click', toggleMute);
+            video.addEventListener('click', toggleMute);
+        }
+    });
+
+    // --- Mobile Footer Accordion ---
+    const footerHeaders = document.querySelectorAll('.footer-col h4');
+    footerHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                const parent = header.parentElement;
+                parent.classList.toggle('active');
+            }
+        });
+    });
+
 });
+
