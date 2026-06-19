@@ -401,9 +401,11 @@ section {
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     z-index: 999;
+    overflow-y: auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -418,26 +420,28 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 80%;
+    justify-content: center;
+    min-height: 100%;
+    height: auto;
     width: 100%;
     max-width: 500px;
-    padding: 3rem 2rem 2rem 2rem;
+    padding: 4rem 2rem;
     box-sizing: border-box;
+    gap: 2.5rem;
 }
 
 .mobile-menu-links {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.2rem;
     width: 100%;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
 }
 
 .mobile-menu-item {
     font-family: var(--primary-font);
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     color: var(--color-text);
     text-decoration: none;
@@ -452,9 +456,9 @@ section {
 }
 
 .mobile-menu-cta {
-    margin-top: 1rem;
-    font-size: 1.05rem;
-    padding: 0.9rem 2.5rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    padding: 0.8rem 2.2rem;
     width: auto;
     display: inline-flex;
     justify-content: center;
@@ -473,6 +477,7 @@ section {
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+    margin-top: 0.5rem;
 }
 
 .mobile-menu-overlay.active .mobile-menu-socials {
@@ -543,6 +548,11 @@ section {
 
 .hero-banner-container {
     position: relative;
+    width: 100%;
+}
+
+.hero-banner-container picture {
+    display: block;
     width: 100%;
 }
 
@@ -1324,6 +1334,21 @@ section {
 
 @media (max-width: 991px) {
 
+    .navbar {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        top: 20px !important;
+        right: 20px !important;
+        left: auto !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    .nav-logo {
+        display: none !important;
+    }
+
     .nav-links {
         display: none;
     }
@@ -1333,14 +1358,17 @@ section {
     }
 
     .hamburger-btn {
-        display: flex;
+        display: flex !important;
+        background: rgba(255, 253, 244, 0.9) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        border: 1px solid rgba(52, 47, 46, 0.15) !important;
+        box-shadow: 0 4px 15px rgba(52, 47, 46, 0.08) !important;
     }
 
     .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.8rem 1.5rem;
+        display: block !important;
+        padding: 0 !important;
     }
 
     .section-heading {
@@ -1381,6 +1409,15 @@ section {
         max-width: none;
         aspect-ratio: 16/9;
         max-height: 220px;
+    }
+
+    .cinematic-image,
+    .cinematic-media video {
+        object-position: center 15%;
+    }
+
+    .cinematic-image.content-collab-img {
+        object-position: center 70%;
     }
 
     .cinematic-text {
@@ -1673,19 +1710,19 @@ section {
 
 /* --- Section 7: Reels --- */
 .reels-section {
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 140px; /* clear floating navbar */
-    padding-bottom: 0;
+    padding-top: 5rem;
+    padding-bottom: 2rem;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
 }
 
 .reels-section .container-fluid {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1697,7 +1734,6 @@ section {
 }
 
 .reels-carousel-container {
-    flex-grow: 1;
     display: flex;
     align-items: center;
     padding: 0;
@@ -1752,11 +1788,11 @@ section {
 
 /* --- Section 7.5: Gallery --- */
 .gallery-section {
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-top: 70px; /* clear floating navbar and keep spacing tight */
+    padding-top: 4rem;
     padding-bottom: 2rem;
     box-sizing: border-box;
     position: relative;
@@ -1764,7 +1800,7 @@ section {
 }
 
 .gallery-section .container-fluid {
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1788,6 +1824,9 @@ section {
     display: inline-flex;
     gap: 2rem;
     white-space: nowrap;
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 .gallery-image {
@@ -1798,6 +1837,9 @@ section {
     box-shadow: 0 10px 25px rgba(52, 47, 46, 0.05);
     flex-shrink: 0;
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 .gallery-image:hover {
@@ -1836,7 +1878,7 @@ section {
 
 /* --- Section 8: Blogs --- */
 .blogs-section {
-    padding: 140px 0 2.5rem 0;
+    padding: 4.5rem 0 2.5rem 0;
 }
 
 .blogs-carousel-wrapper {
@@ -1846,6 +1888,37 @@ section {
     padding: 0 4.5rem;
 }
 
+/* Enable static side blurs on the wrapper instead of the scrolling container */
+.blogs-carousel-wrapper::before,
+.blogs-carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 10%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.blogs-carousel-wrapper::before {
+    left: 4.5rem;
+    background: linear-gradient(to right, rgba(255, 253, 244, 0.95), transparent);
+}
+
+.blogs-carousel-wrapper::after {
+    right: 4.5rem;
+    background: linear-gradient(to left, rgba(255, 253, 244, 0.95), transparent);
+}
+
+@media (max-width: 768px) {
+    .blogs-carousel-wrapper::before {
+        left: 1rem;
+    }
+    .blogs-carousel-wrapper::after {
+        right: 1rem;
+    }
+}
+
 .blogs-carousel-container {
     width: 100% !important;
     overflow-x: auto !important;
@@ -1853,6 +1926,12 @@ section {
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 1.5rem 0 !important;
+}
+
+/* Disable scrolling side blurs on the container */
+.blogs-carousel-container::before,
+.blogs-carousel-container::after {
+    content: none !important;
 }
 
 .blogs-carousel-container::-webkit-scrollbar {

@@ -286,11 +286,30 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Stats Grid Layout */
         .stats-edit-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+        }
+
+        /* Copy Section Cards */
+        .section-card {
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(52, 47, 46, 0.02);
+            backdrop-filter: blur(10px);
+        }
+        .section-card-title {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(183, 88, 44, 0.15);
         }
 
         /* Gallery Manager Styles */
@@ -447,51 +466,290 @@
             
             <!-- Tab 1: Text Copy -->
             <div id="copy-tab" class="tab-content active">
-                <div class="form-group">
-                    <label for="who_am_i_quote">Who am I - Main Quote</label>
-                    <textarea id="who_am_i_quote" data-key="who_am_i.quote" required></textarea>
-                </div>
                 
-                <div class="form-group">
-                    <label for="who_am_i_para1">Who am I - Paragraph 1</label>
-                    <textarea id="who_am_i_para1" data-key="who_am_i.paragraph_1" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="who_am_i_para2">Who am I - Paragraph 2</label>
-                    <textarea id="who_am_i_para2" data-key="who_am_i.paragraph_2" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="who_am_i_para3">Who am I - Paragraph 3</label>
-                    <textarea id="who_am_i_para3" data-key="who_am_i.paragraph_3" required></textarea>
+                <!-- Category 1: Hero & Page Headings -->
+                <div class="section-card">
+                    <div class="section-card-title">Hero & General Headings</div>
+                    
+                    <div class="form-group">
+                        <label for="hero_btn_text">Hero Banner Button Text</label>
+                        <input type="text" id="hero_btn_text" data-key="hero.button_text" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_brands">My Brands Section Heading</label>
+                        <input type="text" id="heading_brands" data-key="headings.brands" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_what_i_do">What I Do Section Heading</label>
+                        <input type="text" id="heading_what_i_do" data-key="headings.what_i_do" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_featured">As Featured On Section Heading</label>
+                        <input type="text" id="heading_featured" data-key="headings.featured" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_work_with_me">Work With Me Section Heading</label>
+                        <input type="text" id="heading_work_with_me" data-key="headings.work_with_me_title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_find_me_on">Find Me On Section Heading</label>
+                        <input type="text" id="heading_find_me_on" data-key="headings.find_me_on_title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_reels">Instagram Reels Section Heading</label>
+                        <input type="text" id="heading_reels" data-key="headings.reels" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_gallery">Gallery Section Heading</label>
+                        <input type="text" id="heading_gallery" data-key="headings.gallery" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="heading_blogs">Blogs Section Heading</label>
+                        <input type="text" id="heading_blogs" data-key="headings.blogs" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="who_am_i_quote_sec">Who am I - Secondary Quote</label>
-                    <textarea id="who_am_i_quote_sec" data-key="who_am_i.quote_secondary" required></textarea>
+                <!-- Category 2: Who Am I (Story & Quotes) -->
+                <div class="section-card">
+                    <div class="section-card-title">Who Am I (Story & Quotes)</div>
+                    
+                    <div class="form-group">
+                        <label for="who_am_i_quote">Who am I - Main Quote (HTML supported)</label>
+                        <textarea id="who_am_i_quote" data-key="who_am_i.quote" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="who_am_i_para1">Who am I - Paragraph 1</label>
+                        <textarea id="who_am_i_para1" data-key="who_am_i.paragraph_1" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="who_am_i_para2">Who am I - Paragraph 2</label>
+                        <textarea id="who_am_i_para2" data-key="who_am_i.paragraph_2" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="who_am_i_para3">Who am I - Paragraph 3</label>
+                        <textarea id="who_am_i_para3" data-key="who_am_i.paragraph_3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="who_am_i_quote_sec">Who am I - Secondary Quote (HTML supported)</label>
+                        <textarea id="who_am_i_quote_sec" data-key="who_am_i.quote_secondary" required></textarea>
+                    </div>
                 </div>
 
-                <div style="border-top: 1px solid var(--color-border); margin: 2rem 0;"></div>
+                <!-- Category 3: What I Do Cards -->
+                <div class="section-card">
+                    <div class="section-card-title">What I Do Cards</div>
 
-                <div class="form-group">
-                    <label for="work_intro">Work with me - Intro Text</label>
-                    <textarea id="work_intro" data-key="work_with_me.intro" required></textarea>
+                    <!-- Card 1 -->
+                    <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Card 1: Content & Collaborations</h4>
+                        <div class="form-group">
+                            <label for="what_i_do_c1_title">Card 1 Title</label>
+                            <input type="text" id="what_i_do_c1_title" data-key="what_i_do.card1_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c1_desc">Card 1 Description (HTML supported)</label>
+                            <textarea id="what_i_do_c1_desc" data-key="what_i_do.card1_desc" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Card 2: Speaking & Keynotes</h4>
+                        <div class="form-group">
+                            <label for="what_i_do_c2_title">Card 2 Title</label>
+                            <input type="text" id="what_i_do_c2_title" data-key="what_i_do.card2_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c2_desc">Card 2 Description</label>
+                            <textarea id="what_i_do_c2_desc" data-key="what_i_do.card2_desc" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Card 3: Heritage Walking Tours</h4>
+                        <div class="form-group">
+                            <label for="what_i_do_c3_title">Card 3 Title</label>
+                            <input type="text" id="what_i_do_c3_title" data-key="what_i_do.card3_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c3_desc">Card 3 Description</label>
+                            <textarea id="what_i_do_c3_desc" data-key="what_i_do.card3_desc" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Card 4: Build your brand with CCU</h4>
+                        <div class="form-group">
+                            <label for="what_i_do_c4_title">Card 4 Title</label>
+                            <input type="text" id="what_i_do_c4_title" data-key="what_i_do.card4_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c4_desc">Card 4 Description (HTML supported)</label>
+                            <textarea id="what_i_do_c4_desc" data-key="what_i_do.card4_desc" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Card 5: International Collaborations</h4>
+                        <div class="form-group">
+                            <label for="what_i_do_c5_title">Card 5 Title</label>
+                            <input type="text" id="what_i_do_c5_title" data-key="what_i_do.card5_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c5_desc">Card 5 Description</label>
+                            <textarea id="what_i_do_c5_desc" data-key="what_i_do.card5_desc" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c5_more">Card 5 Expandable More Text (HTML supported)</label>
+                            <textarea id="what_i_do_c5_more" data-key="what_i_do.card5_more" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Card 6: Documentary & Film</h4>
+                        <div class="form-group">
+                            <label for="what_i_do_c6_title">Card 6 Title</label>
+                            <input type="text" id="what_i_do_c6_title" data-key="what_i_do.card6_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c6_desc">Card 6 Description</label>
+                            <textarea id="what_i_do_c6_desc" data-key="what_i_do.card6_desc" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div style="margin-bottom: 1.5rem; padding-bottom: 0.5rem;">
+                        <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Card 7: Heritage Hospitality</h4>
+                        <div class="form-group">
+                            <label for="what_i_do_c7_title">Card 7 Title</label>
+                            <input type="text" id="what_i_do_c7_title" data-key="what_i_do.card7_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="what_i_do_c7_desc">Card 7 Description</label>
+                            <textarea id="what_i_do_c7_desc" data-key="what_i_do.card7_desc" required></textarea>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="work_outro">Work with me - Outro Text</label>
-                    <textarea id="work_outro" data-key="work_with_me.outro" required></textarea>
+                <!-- Category 4: Work With Me & Find Me On -->
+                <div class="section-card">
+                    <div class="section-card-title">Work With Me / Collaborations</div>
+                    
+                    <div class="form-group">
+                        <label for="work_intro">Work with me - Intro Text (HTML supported)</label>
+                        <textarea id="work_intro" data-key="work_with_me.intro" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="work_outro">Work with me - Outro Text (HTML supported)</label>
+                        <textarea id="work_outro" data-key="work_with_me.outro" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="find_me_text">Find me on - Description</label>
+                        <input type="text" id="find_me_text" data-key="find_me_on.text" required>
+                    </div>
+
+                    <div style="margin-top: 2rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem;">
+                        <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1.5rem; color: var(--color-text);">Work Cards</h3>
+                        
+                        <!-- Work Card 1 -->
+                        <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                            <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Work Card 1: Brand & Social Media</h4>
+                            <div class="form-group">
+                                <label for="work_c1_title">Card 1 Title</label>
+                                <input type="text" id="work_c1_title" data-key="work_cards.card1_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c1_desc">Card 1 Description</label>
+                                <textarea id="work_c1_desc" data-key="work_cards.card1_desc" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c1_more">Card 1 Read More Content (HTML supported)</label>
+                                <textarea id="work_c1_more" data-key="work_cards.card1_more" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Work Card 2 -->
+                        <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                            <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Work Card 2: Need More Than Single Collab?</h4>
+                            <div class="form-group">
+                                <label for="work_c2_title">Card 2 Title</label>
+                                <input type="text" id="work_c2_title" data-key="work_cards.card2_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c2_desc">Card 2 Description</label>
+                                <textarea id="work_c2_desc" data-key="work_cards.card2_desc" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c2_more">Card 2 Read More Content (HTML supported)</label>
+                                <textarea id="work_c2_more" data-key="work_cards.card2_more" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Work Card 3 -->
+                        <div style="margin-bottom: 1.5rem; border-bottom: 1px dashed var(--color-border); padding-bottom: 1rem;">
+                            <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Work Card 3: Speaking & Events</h4>
+                            <div class="form-group">
+                                <label for="work_c3_title">Card 3 Title</label>
+                                <input type="text" id="work_c3_title" data-key="work_cards.card3_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c3_desc">Card 3 Description</label>
+                                <textarea id="work_c3_desc" data-key="work_cards.card3_desc" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c3_more">Card 3 Read More Content (HTML supported)</label>
+                                <textarea id="work_c3_more" data-key="work_cards.card3_more" required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Work Card 4 -->
+                        <div style="margin-bottom: 0.5rem; padding-bottom: 0.5rem;">
+                            <h4 style="margin-bottom: 0.8rem; color: var(--color-text);">Work Card 4: Hosted Collabs & Expeditions</h4>
+                            <div class="form-group">
+                                <label for="work_c4_title">Card 4 Title</label>
+                                <input type="text" id="work_c4_title" data-key="work_cards.card4_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c4_desc">Card 4 Description</label>
+                                <textarea id="work_c4_desc" data-key="work_cards.card4_desc" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_c4_more">Card 4 Read More Content (HTML supported)</label>
+                                <textarea id="work_c4_more" data-key="work_cards.card4_more" required></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div style="border-top: 1px solid var(--color-border); margin: 2rem 0;"></div>
-
-                <div class="form-group">
-                    <label for="find_me_text">Find me on - Description</label>
-                    <input type="text" id="find_me_text" data-key="find_me_on.text" required>
+                <!-- Category 5: Footer Copy -->
+                <div class="section-card">
+                    <div class="section-card-title">Footer settings</div>
+                    
+                    <div class="form-group">
+                        <label for="footer_tagline">Footer Tagline (HTML supported)</label>
+                        <textarea id="footer_tagline" data-key="footer.tagline" required></textarea>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 300px; margin: 1rem auto; display: flex;">Save Changes</button>
             </div>
 
             <!-- Tab 2: Stats -->
@@ -525,7 +783,7 @@
                     <polyline points="16 16 12 12 8 16"></polyline>
                 </svg>
                 <p>Drag & drop images here or click to browse</p>
-                <span>Supports JPG, JPEG, PNG, WEBP files</span>
+                <span>Supports JPG, JPEG, PNG, WEBP files (optimize, compress, and make images WebP for best results)</span>
                 <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="handleFileUpload(event)">
             </div>
 

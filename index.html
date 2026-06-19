@@ -57,6 +57,7 @@
     <div class="mobile-menu-overlay" id="mobileMenu">
         <div class="mobile-menu-content">
             <div class="mobile-menu-links">
+                <a href="#hero" class="mobile-menu-item">Home</a>
                 <a href="#who-i-am" class="mobile-menu-item">My story</a>
                 <a href="#what-i-do" class="mobile-menu-item">What I do</a>
                 <a href="#work-with-me" class="mobile-menu-item">Work with me</a>
@@ -88,9 +89,12 @@
         <!-- Section 1 — Hero -->
         <section class="hero" id="hero">
             <div class="hero-banner-container">
-                <img src="pc%20banner%20new.png" alt="Mister Calcutta Banner" class="hero-pc-banner">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="Mister%20Calcutta%20phone%20hero%20banner.png">
+                    <img src="pc%20banner%20new.png" alt="Mister Calcutta Banner" class="hero-pc-banner">
+                </picture>
                 <div class="hero-banner-content">
-                    <a href="#work-with-me" class="btn btn-primary hero-banner-btn">WORK WITH ME</a>
+                    <a href="#work-with-me" class="btn btn-primary hero-banner-btn" data-cms-key="hero.button_text">WORK WITH ME</a>
                 </div>
             </div>
         </section>
@@ -99,7 +103,7 @@
         <section class="my-brands-stats" id="my-brands">
             <div class="container fade-up">
                 <div class="my-brands-card">
-                    <h2 class="section-heading-brands text-center">My brands</h2>
+                    <h2 class="section-heading-brands text-center" data-cms-key="headings.brands">My brands</h2>
                     <div class="brands-grid-screenshot">
                         <a href="https://calcuttawalks.com" target="_blank" rel="noopener noreferrer" class="brand-item">
                             <img src="Mister Calcutta Brand Logos/calcutta walks.png" alt="Calcutta Walks" class="brand-logo">
@@ -318,22 +322,18 @@
             <div class="container-fluid">
                 <div class="horizontal-scroll-section">
                     <div class="horizontal-title-container fade-up">
-                        <h2 class="section-heading apple-reveal">What I do</h2>
+                        <h2 class="section-heading apple-reveal" data-cms-key="headings.what_i_do">What I do</h2>
                     </div>
                     
                     <div class="horizontal-track">
                         <!-- Card 01 -->
                         <div class="cinematic-block horizontal-card">
                             <div class="cinematic-media">
-                                <div class="reels-grid">
-                                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay loop muted playsinline class="cinematic-video"></video>
-                                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay loop muted playsinline class="cinematic-video"></video>
-                                    <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay loop muted playsinline class="cinematic-video"></video>
-                                </div>
+                                <img src="what%20i%20do/Content%20%26%20Collaboration.webp" alt="Content & Collaborations" class="cinematic-image content-collab-img">
                             </div>
                             <div class="cinematic-text">
-                                <h3>Content & Collaborations</h3>
-                                <p>A collaboration with Mister Calcutta is not a sponsored post. It is a co-created story, researched and filmed on location. We tell stories to an audience built on trust over years. Brands, tourism boards, cultural institutions, if your story deserves to be told well, this is how we do it. Through <strong>@mister.calcutta</strong> and the <strong>Calcutta Creative Unit</strong>, we handle everything from a single reel to a full campaign.</p>
+                                <h3 data-cms-key="what_i_do.card1_title">Content & Collaborations</h3>
+                                <p data-cms-key="what_i_do.card1_desc">A collaboration with Mister Calcutta is not a sponsored post. It is a co-created story, researched and filmed on location. We tell stories to an audience built on trust over years. Brands, tourism boards, cultural institutions, if your story deserves to be told well, this is how we do it. Through <strong>@mister.calcutta</strong> and the <strong>Calcutta Creative Unit</strong>, we handle everything from a single reel to a full campaign.</p>
                                 <div class="card-tags">
                                     <span class="card-tag">Instagram Reels</span>
                                     <span class="card-tag">Youtube Video</span>
@@ -344,15 +344,15 @@
                                 <a href="#work-with-me" class="btn btn-primary">LET’S COLLAB</a>
                             </div>
                         </div>
-
+ 
                         <!-- Card 02 -->
                         <div class="cinematic-block horizontal-card">
                             <div class="cinematic-media">
-                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Speaking Events" class="cinematic-image">
+                                <img src="what%20i%20do/Speaking%20%26%20Keynotes2.webp" alt="Speaking & Keynotes" class="cinematic-image">
                             </div>
                             <div class="cinematic-text">
-                                <h3>Speaking & Keynotes</h3>
-                                <p>Available for literary festivals, heritage conferences, corporate offsites, diaspora events, and cultural institutions. I speak about Calcutta, slow travel, and heritage. My keynotes also touch upon unschooling as a philosophy of learning. My core talk - “Calcutta and the Making of the Modern World”, traces how one city shaped global history and what that tells us about the world we live in today.</p>
+                                <h3 data-cms-key="what_i_do.card2_title">Speaking & Keynotes</h3>
+                                <p data-cms-key="what_i_do.card2_desc">Available for literary festivals, heritage conferences, corporate offsites, diaspora events, and cultural institutions. I speak about Calcutta, slow travel, and heritage. My keynotes also touch upon unschooling as a philosophy of learning. My core talk - “Calcutta and the Making of the Modern World”, traces how one city shaped global history and what that tells us about the world we live in today.</p>
                                 <div class="card-tags">
                                     <span class="card-tag">Keynote Speaker</span>
                                     <span class="card-tag">Panel Discussions</span>
@@ -363,15 +363,15 @@
                                 <a href="#work-with-me" class="btn btn-primary">BOOK A TALK</a>
                             </div>
                         </div>
-
+ 
                         <!-- Card 03 -->
                         <div class="cinematic-block horizontal-card">
                             <div class="cinematic-media">
-                                <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay loop muted playsinline class="cinematic-video"></video>
+                                <img src="what%20i%20do/Heritage%20walking%20tours.webp" alt="Heritage Walking Tours" class="cinematic-image">
                             </div>
                             <div class="cinematic-text">
-                                <h3>Heritage Walking Tours</h3>
-                                <p>I have been walking people through Calcutta for over twenty years. Not sightseeing; exploring the city on foot, by bicycle, or by river. We design trails covering themes of colonial history, Bengali culture, food, photography, and the many communities that made this city what it is. If you want to understand Calcutta, this is where you start.</p>
+                                <h3 data-cms-key="what_i_do.card3_title">Heritage Walking Tours</h3>
+                                <p data-cms-key="what_i_do.card3_desc">I have been walking people through Calcutta for over twenty years. Not sightseeing; exploring the city on foot, by bicycle, or by river. We design trails covering themes of colonial history, Bengali culture, food, photography, and the many communities that made this city what it is. If you want to understand Calcutta, this is where you start.</p>
                                 <div class="card-tags">
                                     <span class="card-tag">Heritage Walks</span>
                                     <span class="card-tag">Cultural Tourism</span>
@@ -390,8 +390,8 @@
                                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="Build Your Brand with CCU" class="cinematic-image">
                             </div>
                             <div class="cinematic-text">
-                                <h3>Build your brand with CCU</h3>
-                                <p>The <strong>C</strong>alcutta <strong>C</strong>reative <strong>U</strong>nit is my creative and growth team built for brands that have a real story. We handle everything from the first idea to the final frame. This includes content creation, brand storytelling, social media strategy, and campaign production. We don't manufacture stories. We uncover them, shape them, and bring them to the world. Born in Calcutta. Built for everywhere.</p>
+                                <h3 data-cms-key="what_i_do.card4_title">Build your brand with CCU</h3>
+                                <p data-cms-key="what_i_do.card4_desc">The <strong>C</strong>alcutta <strong>C</strong>reative <strong>U</strong>nit is my creative and growth team built for brands that have a real story. We handle everything from the first idea to the final frame. This includes content creation, brand storytelling, social media strategy, and campaign production. We don't manufacture stories. We uncover them, shape them, and bring them to the world. Born in Calcutta. Built for everywhere.</p>
                                 <div class="card-tags">
                                     <span class="card-tag">Brand Storytelling</span>
                                     <span class="card-tag">Content Strategy</span>
@@ -409,11 +409,11 @@
                                 <img src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?auto=format&fit=crop&w=800&q=80" alt="International Collaborations" class="cinematic-image">
                             </div>
                             <div class="cinematic-text">
-                                <h3>International Collaborations</h3>
+                                <h3 data-cms-key="what_i_do.card5_title">International Collaborations</h3>
                                 <div class="international-collab-text">
-                                    <p>Every city in the world has a Calcutta thread connecting back to communities across the globe. These threads are real, documented, and waiting to be told. The Armenians of Calcutta trace back to Isfahan. The Baghdadi Jewish community connects to Baghdad and Tel Aviv. The Hakka Chinese of Tiretti Bazaar have cousins in Penang and Toronto. The indentured labourers who left from Calcutta's docks in the 19th century built communities in Mauritius, Fiji, Trinidad, and South Africa.</p>
+                                    <p data-cms-key="what_i_do.card5_desc">Every city in the world has a Calcutta thread connecting back to communities across the globe. These threads are real, documented, and waiting to be told. The Armenians of Calcutta trace back to Isfahan. The Baghdadi Jewish community connects to Baghdad and Tel Aviv. The Hakka Chinese of Tiretti Bazaar have cousins in Penang and Toronto. The indentured labourers who left from Calcutta's docks in the 19th century built communities in Mauritius, Fiji, Trinidad, and South Africa.</p>
                                     <button class="btn-read-more" onclick="const next = this.nextElementSibling; const parent = this.closest('.cinematic-text'); if(next.style.display === 'none' || next.style.display === ''){ next.style.display = 'block'; this.innerText = 'READ LESS'; if(parent) parent.style.overflowY = 'auto'; } else { next.style.display = 'none'; this.innerText = 'READ MORE'; if(parent) { parent.style.overflowY = 'hidden'; parent.scrollTop = 0; } } if(window.ScrollTrigger) window.ScrollTrigger.refresh();">READ MORE</button>
-                                    <p class="more-text-expand" style="display: none;">If you are a cultural institution, a diaspora organisation, a destination, or simply a place with a story that connects back to this city, I want to find that thread and tell it to the world. I can visit, explore, film, and create content that brings your story to a global audience. I can speak, walk, and collaborate. The format is always secondary. The story comes first.</p>
+                                    <p class="more-text-expand" style="display: none;" data-cms-key="what_i_do.card5_more">If you are a cultural institution, a diaspora organisation, a destination, or simply a place with a story that connects back to this city, I want to find that thread and tell it to the world. I can visit, explore, film, and create content that brings your story to a global audience. I can speak, walk, and collaborate. The format is always secondary. The story comes first.</p>
                                 </div>
                                 <div class="card-tags">
                                     <span class="card-tag">Cross-cultural Collaborations</span>
@@ -428,11 +428,11 @@
                         <!-- Card 06 -->
                         <div class="cinematic-block horizontal-card">
                             <div class="cinematic-media">
-                                <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay loop muted playsinline class="cinematic-video"></video>
+                                <img src="what%20i%20do/Films%20%26%20Documentaries.webp" alt="Documentary & Film" class="cinematic-image">
                             </div>
                             <div class="cinematic-text">
-                                <h3>Documentary & Film</h3>
-                                <p>Stories that are too big for a reel. Currently in development is Bound by Ships, a feature documentary tracing Calcutta's indentured labour diaspora. We follow the descendants of those who left from Calcutta's docks in the 19th century across Mauritius, Fiji, and Trinidad — what they remember, what they have lost, and what of Calcutta still lives in them. Open to co-production partners, broadcasters, and diaspora arts funding.</p>
+                                <h3 data-cms-key="what_i_do.card6_title">Documentary & Film</h3>
+                                <p data-cms-key="what_i_do.card6_desc">Stories that are too big for a reel. Currently in development is Bound by Ships, a feature documentary tracing Calcutta's indentured labour diaspora. We follow the descendants of those who left from Calcutta's docks in the 19th century across Mauritius, Fiji, and Trinidad — what they remember, what they have lost, and what of Calcutta still lives in them. Open to co-production partners, broadcasters, and diaspora arts funding.</p>
                                 <div class="card-tags">
                                     <span class="card-tag">Documentary Films</span>
                                     <span class="card-tag">Co-Production</span>
@@ -446,11 +446,11 @@
                         <!-- Card 07 -->
                         <div class="cinematic-block horizontal-card">
                             <div class="cinematic-media">
-                                <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80" alt="Heritage Hospitality" class="cinematic-image">
+                                <img src="what%20i%20do/Heritage%20hospitality.webp" alt="Heritage Hospitality" class="cinematic-image">
                             </div>
                             <div class="cinematic-text">
-                                <h3>Heritage Hospitality</h3>
-                                <p>Stay inside the city's story. Our properties are restored heritage spaces that put you directly inside the communities, neighbourhoods, and local histories. Calcutta Bungalow, Calcutta Rooms, and Kalimpong Bungalow are not hotels in the conventional sense — they are restored spaces that shape what you see by defining where you sleep.</p>
+                                <h3 data-cms-key="what_i_do.card7_title">Heritage Hospitality</h3>
+                                <p data-cms-key="what_i_do.card7_desc">Stay inside the city's story. Our properties are restored heritage spaces that put you directly inside the communities, neighbourhoods, and local histories. Calcutta Bungalow, Calcutta Rooms, and Kalimpong Bungalow are not hotels in the conventional sense — they are restored spaces that shape what you see by defining where you sleep.</p>
                                 <div class="card-tags">
                                     <span class="card-tag">Heritage Stays</span>
                                     <span class="card-tag">Boutique Hospitality</span>
@@ -469,7 +469,7 @@
         <section class="featured-logos" id="featured-logos">
             <div class="container-fluid fade-up">
                 <div class="text-center">
-                    <h2 class="section-heading apple-reveal">As featured on</h2>
+                    <h2 class="section-heading apple-reveal" data-cms-key="headings.featured">As featured on</h2>
                 </div>
                 
                 <div class="logo-ticker-wrapper">
@@ -495,16 +495,16 @@
         <!-- Section 5 — Work With Me -->
         <section class="work-with-me" id="work-with-me">
             <div class="container fade-up text-center" style="max-width: 1600px;">
-                <h2 class="section-heading apple-reveal">Work with me</h2>
+                <h2 class="section-heading apple-reveal" data-cms-key="headings.work_with_me_title">Work with me</h2>
                 <p class="work-intro fade-up" data-cms-key="work_with_me.intro">I do not take on every collaboration that comes my way. Not because I am difficult but because the work only lands when it is the right fit. If you are here, there is probably a reason.<br>Let's find out what it is.</p>
                 
                 <div class="work-grid">
                     <!-- Card 1 -->
                     <div class="work-card fade-up">
-                        <h3 class="work-card-title">Brand & social media collaborations</h3>
+                        <h3 class="work-card-title" data-cms-key="work_cards.card1_title">Brand & social media collaborations</h3>
                         <div class="work-card-desc">
-                            <p>If your brand has a story worth telling and most do, they just haven't found the right way to tell it yet; this is where we start. I work with brands on social media collaborations that are researched, filmed on location, and delivered to an audience that has been built on trust over years.</p>
-                            <div class="more-text" style="display:none;">
+                            <p data-cms-key="work_cards.card1_desc">If your brand has a story worth telling and most do, they just haven't found the right way to tell it yet; this is where we start. I work with brands on social media collaborations that are researched, filmed on location, and delivered to an audience that has been built on trust over years.</p>
+                            <div class="more-text" style="display:none;" data-cms-key="work_cards.card1_more">
                                 <p>What this looks like in practice varies from brand to brand:</p>
                                 <ul>
                                     <li>A dedicated Instagram Reel or a series of them</li>
@@ -521,10 +521,10 @@
                     
                     <!-- Card 2 -->
                     <div class="work-card fade-up" style="transition-delay: 0.1s;">
-                        <h3 class="work-card-title">Need more than a single collaboration?</h3>
+                        <h3 class="work-card-title" data-cms-key="work_cards.card2_title">Need more than a single collaboration?</h3>
                         <div class="work-card-desc">
-                            <p>Some brands need more than one reel. They need a partner who can think about their story over time, shape it, build it, and grow an audience around it consistently. That is what the Calcutta Creative Unit is for.</p>
-                            <div class="more-text" style="display:none;">
+                            <p data-cms-key="work_cards.card2_desc">Some brands need more than one reel. They need a partner who can think about their story over time, shape it, build it, and grow an audience around it consistently. That is what the Calcutta Creative Unit is for.</p>
+                            <div class="more-text" style="display:none;" data-cms-key="work_cards.card2_more">
                                 <p>CCU is my creative and growth team, built for brands that want depth over noise, community over vanity metrics, and storytelling that actually converts. If you are thinking beyond a one-off collaboration, CCU is the conversation to have.</p>
                             </div>
                             <button class="btn-read-more" style="margin-top:0.5rem;" onclick="const more = this.previousElementSibling; if(more.style.display==='none'){more.style.display='block'; this.innerText='Read Less';}else{more.style.display='none'; this.innerText='Read More';}">Read More</button>
@@ -534,10 +534,10 @@
                     
                     <!-- Card 3 -->
                     <div class="work-card fade-up" style="transition-delay: 0.2s;">
-                        <h3 class="work-card-title">Speaking & events</h3>
+                        <h3 class="work-card-title" data-cms-key="work_cards.card3_title">Speaking & events</h3>
                         <div class="work-card-desc">
-                            <p>I am available for literary festivals, heritage conferences, corporate offsites, cultural institutions, and diaspora events. I speak about Calcutta and its place in world history, about slow travel, about heritage as an act of resistance, and about unschooling as a philosophy of learning.</p>
-                            <div class="more-text" style="display:none;">
+                            <p data-cms-key="work_cards.card3_desc">I am available for literary festivals, heritage conferences, corporate offsites, cultural institutions, and diaspora events. I speak about Calcutta and its place in world history, about slow travel, about heritage as an act of resistance, and about unschooling as a philosophy of learning.</p>
+                            <div class="more-text" style="display:none;" data-cms-key="work_cards.card3_more">
                                 <p>My core keynote - <em>Calcutta and the Making of the Modern World</em> is not a lecture. It is a story. One city, three centuries, and the unlikely connections that tie it to almost every corner of the globe. It can be delivered as a traditional keynote, a panel conversation, or most memorably as a walking tour of wherever we happen to be.</p>
                                 <p>If your event needs a speaker who brings something genuinely different to the stage, let's talk.</p>
                             </div>
@@ -548,10 +548,10 @@
 
                     <!-- Card 4 -->
                     <div class="work-card fade-up" style="transition-delay: 0.3s;">
-                        <h3 class="work-card-title">Hosted collaborations & expeditions</h3>
+                        <h3 class="work-card-title" data-cms-key="work_cards.card4_title">Hosted collaborations & expeditions</h3>
                         <div class="work-card-desc">
-                            <p>If you want me to come to you, your city, your country, your community and find the story that connects your place to the world, this is the format. I travel, I explore, I film, and I tell that story to an audience that is always looking for the next thread to follow.</p>
-                            <div class="more-text" style="display:none;">
+                            <p data-cms-key="work_cards.card4_desc">If you want me to come to you, your city, your country, your community and find the story that connects your place to the world, this is the format. I travel, I explore, I film, and I tell that story to an audience that is always looking for the next thread to follow.</p>
+                            <div class="more-text" style="display:none;" data-cms-key="work_cards.card4_more">
                                 <p>This works particularly well for cultural institutions, diaspora organisations, and destinations that have a deep story but have not yet found the right voice to tell it. A hosted collaboration is not a press trip. It is a creative partnership with a clear outcome - content that lives long after I have left.</p>
                             </div>
                             <button class="btn-read-more" style="margin-top:0.5rem;" onclick="const more = this.previousElementSibling; if(more.style.display==='none'){more.style.display='block'; this.innerText='Read Less';}else{more.style.display='none'; this.innerText='Read More';}">Read More</button>
@@ -571,7 +571,7 @@ Write to me.</p>
         <!-- Section 6 — Find Me On -->
         <section class="find-me-on" id="find-me-on">
             <div class="container text-center fade-up">
-                <h2 class="section-heading apple-reveal">Find me on</h2>
+                <h2 class="section-heading apple-reveal" data-cms-key="headings.find_me_on_title">Find me on</h2>
                 <p class="find-me-text" data-cms-key="find_me_on.text">Connect with me across platforms or drop an email.</p>
                 <div class="social-grid">
                     <a href="https://instagram.com/mister.calcutta" target="_blank" class="social-link">
@@ -605,7 +605,7 @@ Write to me.</p>
         <!-- Section 7 — Instagram Reels -->
         <section class="reels-section" id="reels">
             <div class="container-fluid fade-up text-center">
-                <h2 class="section-heading apple-reveal">Check out our content</h2>
+                <h2 class="section-heading apple-reveal" data-cms-key="headings.reels">Check out our content</h2>
                 
                 <div class="carousel-container reels-carousel-container">
                     <div class="carousel-track reels-track">
@@ -723,279 +723,67 @@ Write to me.</p>
         <!-- Section 7.5 — Gallery -->
         <section class="gallery-section" id="gallery">
             <div class="container-fluid fade-up text-center">
-                <h2 class="section-heading apple-reveal">Calcutta in frames</h2>
+                <h2 class="section-heading apple-reveal" data-cms-key="headings.gallery">Around the World</h2>
                 
                 <!-- Left-to-Right Carousel -->
                 <div class="gallery-carousel-container">
                     <div class="gallery-track track-l2r">
-                        <img src="gallery images/00100sPORTRAIT_00100_BURST20190419201740219_COVER.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/1-scott,_olivia_and_abhilash.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/15.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14(1).webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14(2).webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14(3).webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20210302_220328.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20210303_162459.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20210411_172703.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20220524_141010.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20220527_121223.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20231231_112011.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240401_175822.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240504_184805.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240730_150006.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240827_173013.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241117_190349.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241118_130619.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241119_003838.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241123_161427.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241123_203835.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241127_165743.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241128_152639.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241201_011151.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250115_143042.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250117_104416.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250214_202404~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250322_175132~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250407_084717.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250518_164025.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250603_170501.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250609_174437.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250828_180626.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250930_131210.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251018_210506.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251020_185757.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251023_164532.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251101_131116.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251117_154032~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251213_201526.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251219_154753.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251230_092312.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260119_120646.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260128_173949.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260201_163621.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260220_121245.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260301_085221.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260307_083119-EDIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260312_140953.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260314_111306.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260316_191417.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260404_110630.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260407_182326.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260412_133159.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260511_110729.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/3.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/31.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/6.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/facebook_1589277067662_6665911162003483595.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/ifte_speaking_at_CII_Travel_East.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20150225-WA0009.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20180518-WA0051.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20180526-WA0104.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20190221-WA0015.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/00100sPORTRAIT_00100_BURST20190419201740219_COVER.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/1-scott,_olivia_and_abhilash.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/15.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14(1).webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14(2).webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14(3).webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/2020-04-14.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20210302_220328.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20210303_162459.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20210411_172703.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20220524_141010.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20220527_121223.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20231231_112011.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240401_175822.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240504_184805.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240730_150006.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20240827_173013.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241117_190349.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241118_130619.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241119_003838.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241123_161427.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241123_203835.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241127_165743.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241128_152639.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20241201_011151.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250115_143042.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250117_104416.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250214_202404~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250322_175132~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250407_084717.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250518_164025.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250603_170501.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250609_174437.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250828_180626.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20250930_131210.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251018_210506.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251020_185757.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251023_164532.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251101_131116.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251117_154032~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251213_201526.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251219_154753.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20251230_092312.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260119_120646.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260128_173949.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260201_163621.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260220_121245.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260301_085221.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260307_083119-EDIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260312_140953.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260314_111306.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260316_191417.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260404_110630.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260407_182326.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260412_133159.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/20260511_110729.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/3.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/31.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/6.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/facebook_1589277067662_6665911162003483595.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/ifte_speaking_at_CII_Travel_East.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20150225-WA0009.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20180518-WA0051.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20180526-WA0104.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20190221-WA0015.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
+                        <img src="gallery images/00100sPORTRAIT_00100_BURST20190419201740219_COVER.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/1-scott,_olivia_and_abhilash.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/1.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/15.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14(1).webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14(2).webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14(3).webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20210302_220328.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20210303_162459.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20210411_172703.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20220524_141010.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20220527_121223.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/00100sPORTRAIT_00100_BURST20190419201740219_COVER.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/1-scott,_olivia_and_abhilash.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/1.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/15.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14(1).webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14(2).webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14(3).webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/2020-04-14.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20210302_220328.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20210303_162459.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20210411_172703.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20220524_141010.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20220527_121223.webp" class="gallery-image" alt="Around the World" decoding="async">
                     </div>
                 </div>
 
                 <!-- Right-to-Left Carousel -->
                 <div class="gallery-carousel-container">
                     <div class="gallery-track track-r2l">
-                        <img src="gallery images/IMG-20190624-WA0012.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20191214-WA0012.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20210415-WA0020.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20230721-WA0150.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_0390.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_1175.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180514_091608_1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180517_150144.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180519_152316_1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180521_110302.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180522_195732.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180523_110829.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180525_143549.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180527_210203.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180601_213006.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180624_170830.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180703_184519.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180724_062532_1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190120_115348.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190205_104029.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190205_124445.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190619_092856.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190619_112514.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190619_163343.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190624_150626.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220227_103615.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220418_090354.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220418_092657.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220427_181343.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220514_143306.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220807_215846.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220817_163133.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220917_113532.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20221005_221401~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20221010_131233.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20221121_161719.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20251129_192007.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_4164.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_5012.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_5072.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_6022.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/MVIMG_20190915_133721.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1060665.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1130134.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1160453.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1190188.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1190721.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20221116_094852143.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20221120_004257582.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20221120_045047968.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230122_092236654.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230216_052446563.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230225_044434067.MP.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230307_081612469.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230405_152020169.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230408_161507482.MP.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230606_093237422.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230607_090819944.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230608_112708301.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230608_113603472.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230609_060739937.MP.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230725_123733074.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230803_182600184.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20231001_101001705.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/SUM_7931.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20190624-WA0012.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20191214-WA0012.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20210415-WA0020.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG-20230721-WA0150.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_0390.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_1175.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180514_091608_1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180517_150144.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180519_152316_1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180521_110302.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180522_195732.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180523_110829.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180525_143549.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180527_210203.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180601_213006.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180624_170830.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180703_184519.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20180724_062532_1.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190120_115348.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190205_104029.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190205_124445.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190619_092856.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190619_112514.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190619_163343.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20190624_150626.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220227_103615.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220418_090354.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220418_092657.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220427_181343.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220514_143306.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220807_215846.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220817_163133.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20220917_113532.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20221005_221401~2.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20221010_131233.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20221121_161719.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_20251129_192007.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_4164.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_5012.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_5072.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/IMG_6022.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/MVIMG_20190915_133721.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1060665.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1130134.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1160453.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1190188.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/P1190721.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20221116_094852143.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20221120_004257582.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20221120_045047968.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230122_092236654.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230216_052446563.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230225_044434067.MP.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230307_081612469.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230405_152020169.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230408_161507482.MP.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230606_093237422.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230607_090819944.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230608_112708301.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230608_113603472.PORTRAIT.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230609_060739937.MP.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230725_123733074.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20230803_182600184.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/PXL_20231001_101001705.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
-                        <img src="gallery images/SUM_7931.webp" class="gallery-image" alt="Calcutta Frames" loading="lazy">
+                        <img src="gallery images/20231231_112011.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240401_175822.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240504_184805.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240730_150006.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240827_173013.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241117_190349.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241118_130619.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241119_003838.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241123_161427.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241123_203835.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241127_165743.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241128_152639.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20231231_112011.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240401_175822.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240504_184805.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240730_150006.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20240827_173013.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241117_190349.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241118_130619.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241119_003838.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241123_161427.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241123_203835.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241127_165743.webp" class="gallery-image" alt="Around the World" decoding="async">
+                        <img src="gallery images/20241128_152639.webp" class="gallery-image" alt="Around the World" decoding="async">
                     </div>
                 </div>
             </div>
@@ -1004,7 +792,7 @@ Write to me.</p>
         <!-- Section 8 — Blogs -->
         <section class="blogs-section" id="blogs">
             <div class="container-fluid fade-up text-center">
-                <h2 class="section-heading apple-reveal">Latest from Mister Calcutta</h2>
+                <h2 class="section-heading apple-reveal" data-cms-key="headings.blogs">Latest from Mister Calcutta</h2>
                 
                 <div class="blogs-carousel-wrapper">
                     <button class="blogs-nav-btn prev-btn" aria-label="Previous slide">
@@ -1084,7 +872,7 @@ Write to me.</p>
                         <div class="footer-logo">
                             <img src="Mister Calcutta Brand Logos/main logo.webp" alt="Mister Calcutta" class="footer-logo-img">
                         </div>
-                        <p class="footer-tagline">Preserving the stories of<br>a city etched in time.</p>
+                        <p class="footer-tagline" data-cms-key="footer.tagline">Preserving the stories of<br>a city etched in time.</p>
                         <div class="footer-socials">
                             <a href="https://instagram.com/mister.calcutta" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
                                 <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>

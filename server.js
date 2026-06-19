@@ -126,7 +126,7 @@ function updateIndexHtmlGallery(images) {
         const list2 = images.slice(half);
 
         const makeImgTags = (list) => {
-            const tags = list.map(filename => `<img src="gallery images/${filename}" class="gallery-image" alt="Calcutta Frames" loading="lazy">`);
+            const tags = list.map(filename => `<img src="gallery images/${filename}" class="gallery-image" alt="Around the World" decoding="async">`);
             return [...tags, ...tags].join('\n                        ');
         };
 

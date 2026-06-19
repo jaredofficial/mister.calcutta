@@ -1,4 +1,7 @@
 {
+  "hero": {
+    "button_text": "WORK WITH ME"
+  },
   "stats": {
     "storytelling_years": "20",
     "guests_hosted": "50",
@@ -13,9 +16,53 @@
   },
   "work_with_me": {
     "intro": "I do not take on every collaboration that comes my way. Not because I am difficult but because the work only lands when it is the right fit. If you are here, there is probably a reason.<br>Let's find out what it is.",
-    "outro": "The best collaborations I have done started with a simple message.<br>No brief, no deck, no formal proposal.<br>Just: “I think there might be something here.”<br>If that is where you are, that is enough.<br>Write to me."
+    "outro": "The best collaborations I have done started with a simple message.<br>\nNo brief, no deck, no formal proposal.<br>\nJust: “I think there might be something here.”<br>\nIf that is where you are, that is enough.<br>\nWrite to me."
   },
   "find_me_on": {
     "text": "Connect with me across platforms or drop an email."
+  },
+  "headings": {
+    "brands": "My brands",
+    "what_i_do": "What I do",
+    "featured": "As featured on",
+    "work_with_me_title": "Work with me",
+    "find_me_on_title": "Find me on",
+    "reels": "Check out our content",
+    "gallery": "Around the World",
+    "blogs": "Latest from Mister Calcutta"
+  },
+  "what_i_do": {
+    "card1_title": "Content & Collaborations",
+    "card1_desc": "A collaboration with Mister Calcutta is not a sponsored post. It is a co-created story, researched and filmed on location. We tell stories to an audience built on trust over years. Brands, tourism boards, cultural institutions, if your story deserves to be told well, this is how we do it. Through <strong>@mister.calcutta</strong> and the <strong>Calcutta Creative Unit</strong>, we handle everything from a single reel to a full campaign.",
+    "card2_title": "Speaking & Keynotes",
+    "card2_desc": "Available for literary festivals, heritage conferences, corporate offsites, diaspora events, and cultural institutions. I speak about Calcutta, slow travel, and heritage. My keynotes also touch upon unschooling as a philosophy of learning. My core talk - “Calcutta and the Making of the Modern World”, traces how one city shaped global history and what that tells us about the world we live in today.",
+    "card3_title": "Heritage Walking Tours",
+    "card3_desc": "I have been walking people through Calcutta for over twenty years. Not sightseeing; exploring the city on foot, by bicycle, or by river. We design trails covering themes of colonial history, Bengali culture, food, photography, and the many communities that made this city what it is. If you want to understand Calcutta, this is where you start.",
+    "card4_title": "Build your brand with CCU",
+    "card4_desc": "The <strong>C</strong>alcutta <strong>C</strong>reative <strong>U</strong>nit is my creative and growth team built for brands that have a real story. We handle everything from the first idea to the final frame. This includes content creation, brand storytelling, social media strategy, and campaign production. We don't manufacture stories. We uncover them, shape them, and bring them to the world. Born in Calcutta. Built for everywhere.",
+    "card5_title": "International Collaborations",
+    "card5_desc": "Every city in the world has a Calcutta thread connecting back to communities across the globe. These threads are real, documented, and waiting to be told. The Armenians of Calcutta trace back to Isfahan. The Baghdadi Jewish community connects to Baghdad and Tel Aviv. The Hakka Chinese of Tiretti Bazaar have cousins in Penang and Toronto. The indentured labourers who left from Calcutta's docks in the 19th century built communities in Mauritius, Fiji, Trinidad, and South Africa.",
+    "card5_more": "<p>If you are a cultural institution, a diaspora organisation, a destination, or simply a place with a story that connects back to this city, I want to find that thread and tell it to the world. I can visit, explore, film, and create content that brings your story to a global audience. I can speak, walk, and collaborate. The format is always secondary. The story comes first.</p>",
+    "card6_title": "Documentary & Film",
+    "card6_desc": "Stories that are too big for a reel. Currently in development is Bound by Ships, a feature documentary tracing Calcutta's indentured labour diaspora. We follow the descendants of those who left from Calcutta's docks in the 19th century across Mauritius, Fiji, and Trinidad — what they remember, what they have lost, and what of Calcutta still lives in them. Open to co-production partners, broadcasters, and diaspora arts funding.",
+    "card7_title": "Heritage Hospitality",
+    "card7_desc": "Stay inside the city's story. Our properties are restored heritage spaces that put you directly inside the communities, neighbourhoods, and local histories. Calcutta Bungalow, Calcutta Rooms, and Kalimpong Bungalow are not hotels in the conventional sense — they are restored spaces that shape what you see by defining where you sleep."
+  },
+  "work_cards": {
+    "card1_title": "Brand & social media collaborations",
+    "card1_desc": "If your brand has a story worth telling and most do, they just haven't found the right way to tell it yet; this is where we start. I work with brands on social media collaborations that are researched, filmed on location, and delivered to an audience that has been built on trust over years.",
+    "card1_more": "<p>What this looks like in practice varies from brand to brand:</p><ul><li>A dedicated Instagram Reel or a series of them</li><li>A Carousel that goes deep on your story</li><li>Stories for behind-the-scenes and real-time moments</li><li>Long-form content for YouTube</li></ul><p>We figure out what works best for your brand and build from there.</p>",
+    "card2_title": "Need more than a single collaboration?",
+    "card2_desc": "Some brands need more than one reel. They need a partner who can think about their story over time, shape it, build it, and grow an audience around it consistently. That is what the Calcutta Creative Unit is for.",
+    "card2_more": "<p>CCU is my creative and growth team, built for brands that want depth over noise, community over vanity metrics, and storytelling that actually converts. If you are thinking beyond a one-off collaboration, CCU is the conversation to have.</p>",
+    "card3_title": "Speaking & events",
+    "card3_desc": "I am available for literary festivals, heritage conferences, corporate offsites, cultural institutions, and diaspora events. I speak about Calcutta and its place in world history, about slow travel, about heritage as an act of resistance, and about unschooling as a philosophy of learning.",
+    "card3_more": "<p>My core keynote - <em>Calcutta and the Making of the Modern World</em> is not a lecture. It is a story. One city, three centuries, and the unlikely connections that tie it to almost every corner of the globe. It can be delivered as a traditional keynote, a panel conversation, or most memorably as a walking tour of wherever we happen to be.</p><p>If your event needs a speaker who brings something genuinely different to the stage, let's talk.</p>",
+    "card4_title": "Hosted collaborations & expeditions",
+    "card4_desc": "If you want me to come to you, your city, your country, your community and find the story that connects your place to the world, this is the format. I travel, I explore, I film, and I tell that story to an audience that is always looking for the next thread to follow.",
+    "card4_more": "<p>This works particularly well for cultural institutions, diaspora organisations, and destinations that have a deep story but have not yet found the right voice to tell it. A hosted collaboration is not a press trip. It is a creative partnership with a clear outcome - content that lives long after I have left.</p>"
+  },
+  "footer": {
+    "tagline": "Preserving the stories of<br>a city etched in time."
   }
 }
