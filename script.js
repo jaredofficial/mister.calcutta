@@ -756,6 +756,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (typeof heroTl !== 'undefined') {
                 heroTl.play();
             }
+
+            // Load gallery images sneakily in the background after page loader is hidden
+            const loadGalleryImages = () => {
+                const lazyImages = document.querySelectorAll("#gallery img[data-src]");
+                lazyImages.forEach(img => {
+                    img.src = img.getAttribute("data-src");
+                    img.removeAttribute("data-src");
+                });
+            };
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(() => setTimeout(loadGalleryImages, 500));
+            } else {
+                setTimeout(loadGalleryImages, 1000);
+            }
         }, 500);
     }
 
