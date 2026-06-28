@@ -436,6 +436,33 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
+    // --- Gallery Lazy Loading via IntersectionObserver ---
+    const gallerySection = document.getElementById("gallery");
+    if (gallerySection && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const lazyImages = gallerySection.querySelectorAll("img[data-src]");
+                    lazyImages.forEach(img => {
+                        img.src = img.getAttribute("data-src");
+                        img.removeAttribute("data-src");
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, {
+            rootMargin: "0px 0px 400px 0px"
+        });
+        observer.observe(gallerySection);
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        const lazyImages = document.querySelectorAll("img[data-src]");
+        lazyImages.forEach(img => {
+            img.src = img.getAttribute("data-src");
+            img.removeAttribute("data-src");
+        });
+    }
+
     // --- Gallery Lightbox Logic ---
     const lightbox = document.getElementById("galleryLightbox");
     const lightboxImg = document.getElementById("lightboxImg");
@@ -449,8 +476,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         const uniqueImages = [];
         const seenSources = new Set();
         galleryImages.forEach(img => {
-            const src = img.getAttribute("src");
-            if (!seenSources.has(src)) {
+            const src = img.getAttribute("data-src") || img.getAttribute("src");
+            if (src && !src.startsWith("data:") && !seenSources.has(src)) {
                 seenSources.add(src);
                 uniqueImages.push(src);
             }
@@ -469,7 +496,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         galleryImages.forEach(img => {
             img.addEventListener("click", () => {
-                const src = img.getAttribute("src");
+                const src = img.getAttribute("data-src") || img.getAttribute("src");
                 currentImgIndex = uniqueImages.indexOf(src);
                 updateLightboxContent(currentImgIndex);
 

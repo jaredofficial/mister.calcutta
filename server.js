@@ -20,11 +20,11 @@ app.use(express.urlencoded({ extended: true }));
 // Multer storage configuration for gallery uploads
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, 'gallery images'));
+        cb(null, path.join(__dirname, 'gallery-images'));
     },
     filename: function (req, file, cb) {
         // Keep original filename or sanitize it
-        const safeName = file.originalname.replace(/[^a-zA-Z0-9.\-_~()]/g, '_');
+        const safeName = file.originalname.replace(/[^a-zA-Z0-9.\-_~()]/g, '-').replace(/-+/g, '-');
         cb(null, safeName);
     }
 });
@@ -76,7 +76,7 @@ app.post('/api/content', authMiddleware, (req, res) => {
 
 // API Route: Get list of gallery images
 app.get('/api/gallery', (req, res) => {
-    const galleryDir = path.join(__dirname, 'gallery images');
+    const galleryDir = path.join(__dirname, 'gallery-images');
     fs.readdir(galleryDir, (err, files) => {
         if (err) {
             return res.status(500).json({ error: 'Failed to list gallery directory' });
@@ -92,7 +92,7 @@ app.get('/api/gallery', (req, res) => {
 
 // Helper function to update gallery.json file
 function updateGalleryJson() {
-    const galleryDir = path.join(__dirname, 'gallery images');
+    const galleryDir = path.join(__dirname, 'gallery-images');
     fs.readdir(galleryDir, (err, files) => {
         if (err) {
             console.error('Failed to read gallery dir:', err);
@@ -126,7 +126,7 @@ function updateIndexHtmlGallery(images) {
         const list2 = images.slice(half);
 
         const makeImgTags = (list) => {
-            const tags = list.map(filename => `<img src="gallery images/${filename}" class="gallery-image" alt="Around the World" decoding="async">`);
+            const tags = list.map(filename => `<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 200'%3E%3C/svg%3E" data-src="gallery-images/${filename}" class="gallery-image" alt="Around the World" loading="lazy" decoding="async">`);
             return [...tags, ...tags].join('\n                        ');
         };
 
@@ -165,7 +165,7 @@ app.post('/api/gallery/delete', authMiddleware, (req, res) => {
     
     // Prevent directory traversal attacks
     const safeFilename = path.basename(filename);
-    const filePath = path.join(__dirname, 'gallery images', safeFilename);
+    const filePath = path.join(__dirname, 'gallery-images', safeFilename);
     
     fs.unlink(filePath, (err) => {
         if (err) {

@@ -93,7 +93,7 @@ switch ($route) {
         
     case 'gallery':
         if ($method === 'GET') {
-            $dir = 'gallery images';
+            $dir = 'gallery-images';
             if (!is_dir($dir)) {
                 http_response_code(500);
                 echo json_encode(["error" => "Gallery directory not found"]);
@@ -116,7 +116,7 @@ switch ($route) {
         
 // Helper to update gallery.json file
 function update_gallery_json() {
-    $dir = 'gallery images';
+    $dir = 'gallery-images';
     if (!is_dir($dir)) return;
     $files = scandir($dir);
     $images = [];
@@ -146,7 +146,7 @@ function update_index_html_gallery($images) {
     $makeImgTags = function($list) {
         $tags = [];
         foreach ($list as $filename) {
-            $tags[] = '<img src="gallery images/' . $filename . '" class="gallery-image" alt="Calcutta Frames" loading="lazy">';
+            $tags[] = '<img src="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 320 200\'%3E%3C/svg%3E" data-src="gallery-images/' . $filename . '" class="gallery-image" alt="Around the World" loading="lazy" decoding="async">';
         }
         return implode("\n                        ", array_merge($tags, $tags));
     };
@@ -175,9 +175,8 @@ function update_index_html_gallery($images) {
             }
             
             $file = $_FILES['image'];
-            // Sanitize filename
-            $name = preg_replace('/[^a-zA-Z0-9.\-_~()]/', '_', $file['name']);
-            $target = 'gallery images/' . $name;
+            $name = preg_replace('/[^a-zA-Z0-9.\-_~()]/', '-', $file['name']);
+            $target = 'gallery-images/' . $name;
             
             if (move_uploaded_file($file['tmp_name'], $target)) {
                 update_gallery_json();
@@ -200,7 +199,7 @@ function update_index_html_gallery($images) {
             }
             
             $filename = basename($input['filename']);
-            $path = 'gallery images/' . $filename;
+            $path = 'gallery-images/' . $filename;
             
             if (!file_exists($path)) {
                 http_response_code(404);
